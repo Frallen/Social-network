@@ -3,15 +3,15 @@ import Contentheader from '../../img/content-header.jpg'
 import classes from "./profile.module.scss"
 import Myposts from "./myposts/myposts";
 import Submit from "./submitpost/submit";
-import Bio from "./bio/bio";
-const Profile = () =>{
+import Info from "./info/Info";
+const Profile = (props) =>{
     return(
         <div>
       
         <div className={classes.header}><img src={Contentheader} alt="" /></div>
-          <Bio></Bio>
+          <Info Bio={props.Bio}></Info>
             <Submit></Submit>
-          <Myposts></Myposts>
+          <Myposts P={props.P}></Myposts>
         </div>
     )
 }
