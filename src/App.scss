@@ -1,0 +1,31 @@
+@import "./normalaze.scss";
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #fff;
+}
+
+h1,h2,h3,h4{
+  padding: 0;
+  margin: 0;
+}
+
+.Wrapper {
+  display: grid;
+  grid-template-areas: "a a a""b c c""b c c""b c c";
+  grid-template-columns: 1fr 10fr;
+  grid-template-rows: 20vh 1fr;
+  grid-gap: 10px;
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+.content{
+  grid-area: c;
+  background: #fff;
+  padding-bottom: 50px;
+
+}
+p{
+  font-size: 2vmin;
+  color: #fff;
+}

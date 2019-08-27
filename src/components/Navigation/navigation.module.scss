@@ -1,0 +1,33 @@
+.navigation {
+  grid-area: b;
+  background:#9fffdf;
+
+  ul {
+    padding: 0;
+    padding-left: 20px;
+  }
+}
+
+.listitem {
+
+  list-style-type: none;
+  padding-top: 20px;
+
+}
+
+.button {
+  text-decoration: none;
+  font-size: 18px;
+  display: inline-block;
+  color: #696969;
+  transition: 0.2s ease-in-out;
+}
+
+ .active{
+  color: #fff;
+}
+
+.button:hover{
+  color: #fff;
+  transition: 0.2s ease-in-out;
+}

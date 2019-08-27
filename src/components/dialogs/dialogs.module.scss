@@ -1,0 +1,57 @@
+h2{
+    text-transform: uppercase;
+    color:#696969;
+}
+.page{
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    grid-auto-rows: max-content;
+    justify-content: center;
+
+}
+
+.sender{
+    .item{ 
+       .link{
+           text-decoration: none;
+           font-size: 25px;
+           color: #696969;
+       }
+}
+}
+
+.message{
+    .item{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .avatar{
+        padding-right: 50px;
+        .boximg{
+        height: 50px;
+        width: 50px;
+        border-radius: 100%;
+        background: rgb(115, 255, 72);
+    }
+    .name{
+        font-weight: 500;
+        font-size: 18px;
+        text-transform: capitalize;
+        display: block;
+    }
+}
+    .boxtext{
+        border-radius: 20px;
+        border:3px solid #696969;
+        padding: 10px 15px;
+        p{
+        font-size: 15px;
+        color: #696969;
+        }
+    }
+
+}}
+
+.active{
+   color: rgb(55, 252, 55);
+}

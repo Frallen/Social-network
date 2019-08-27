@@ -1,0 +1,14 @@
+.header {
+  grid-area: a;
+  background: #9fffdf;
+
+}
+.logo{
+  display: flex;
+  align-items: center;
+  a{
+    display: inline-block;
+    text-decoration: none;
+    color: #696969;
+  }
+}
