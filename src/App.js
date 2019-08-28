@@ -25,8 +25,8 @@ const App = (props) =>{
 <Navigation></Navigation>
 <div className="content">
 
-<Route path="/profile" render={()=><Profile P={props.P} Bio={props.Bio}></Profile>}></Route>
-<Route path="/dialogs" render={()=><Dialogs M={props.M} S={props.S}></Dialogs>}></Route>
+<Route path="/profile" render={()=><Profile state={props.state.Profile}></Profile>}></Route>
+<Route path="/dialogs" render={()=><Dialogs state={props.state.Messages}></Dialogs>}></Route>
 <Route path="/news" render={()=><News></News>}></Route>
 <Route path="/music" render={()=><Music></Music>}></Route>
 <Route path="/Settings" render={()=><Settings></Settings>}></Route>

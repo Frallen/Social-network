@@ -8,9 +8,9 @@ import Messageitem from "./message/message";
 
 const Dialogs = (props)=>{
     
-    let SenderElement = props.S.map(s=><Senderitem id={s.id} name={s.name}></Senderitem>)
+    let SenderElement = props.state.S.map(s=><Senderitem id={s.id} name={s.name}></Senderitem>)
 
-    let MessageElement =props.M.map(m=><Messageitem name={m.name} text={m.text}></Messageitem>) 
+    let MessageElement =props.state.M.map(m=><Messageitem name={m.name} text={m.text}></Messageitem>) 
 
  
     return(

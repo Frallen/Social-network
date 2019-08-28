@@ -5,13 +5,14 @@ import Myposts from "./myposts/myposts";
 import Submit from "./submitpost/submit";
 import Info from "./info/Info";
 const Profile = (props) =>{
+
     return(
         <div>
       
         <div className={classes.header}><img src={Contentheader} alt="" /></div>
-          <Info Bio={props.Bio}></Info>
+          <Info Bio={props.state.Bio}></Info>
             <Submit></Submit>
-          <Myposts P={props.P}></Myposts>
+          <Myposts P={props.state.P}></Myposts>
         </div>
     )
 }
