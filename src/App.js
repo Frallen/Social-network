@@ -7,33 +7,30 @@ import Dialogs from './components/dialogs/dialogs';
 import Music from "./components/music/music";
 import News from "./components/news/news";
 import Settings from "./components/settings/settings";
-import {BrowserRouter,Route} from 'react-router-dom';
-
-
+import {Route} from 'react-router-dom';
+import Friends from './components/friends/friends';
 
 
 
 const App = (props) =>{
-  
-
 
   return(
     
-    <BrowserRouter>
+    
     <div className="Wrapper">
 <Header></Header>
-<Navigation></Navigation>
+<Navigation state={props.state.Navigation}></Navigation>
 <div className="content">
 
-<Route path="/profile" render={()=><Profile state={props.state.Profile}></Profile>}></Route>
+<Route path="/profile" render={()=><Profile state={props.state.Profile} addpost={props.addpost}></Profile>}></Route>
 <Route path="/dialogs" render={()=><Dialogs state={props.state.Messages}></Dialogs>}></Route>
 <Route path="/news" render={()=><News></News>}></Route>
 <Route path="/music" render={()=><Music></Music>}></Route>
 <Route path="/Settings" render={()=><Settings></Settings>}></Route>
-
+<Route path="/friends" render={()=><Friends></Friends>}></Route>
 </div>
     </div>
- </BrowserRouter>
+
   );
 }
 

@@ -1,5 +1,10 @@
-
-let State ={
+import {renderTree} from "./../render"
+let state ={
+    Navigation:[
+        {id:1, name:"Andrey",},
+        {id:2, name:"Georg",},
+        {id:3, name:"Deren",}
+    ],
 Profile:{ 
     /*Данные в профиле о пользователе */
 Bio:[
@@ -7,8 +12,8 @@ Bio:[
    ],
 /*Посты и лайки*/
 P :[ 
-    { message:"hi how are you?",like:21},
-    { message:"My firt post",like:10}
+    { id:1, message:"hi how are you?",like:21},
+    { id:2, message:"My firt post",like:10}
   ]
 },
 
@@ -38,4 +43,14 @@ S:[
 
 }
 
-export default State;
+export let addpost= (postMessage)=>{
+    let newPost={
+        id:3,
+        message:postMessage,
+        like:5,
+    }
+    state.Profile.P.push(newPost);
+    renderTree(state);
+}
+
+export default state;

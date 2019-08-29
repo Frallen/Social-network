@@ -11,8 +11,8 @@ const Profile = (props) =>{
       
         <div className={classes.header}><img src={Contentheader} alt="" /></div>
           <Info Bio={props.state.Bio}></Info>
-            <Submit></Submit>
-          <Myposts P={props.state.P}></Myposts>
+            <Submit addpost={props.addpost}></Submit>
+          <Myposts P={props.state.P} ></Myposts>
         </div>
     )
 }

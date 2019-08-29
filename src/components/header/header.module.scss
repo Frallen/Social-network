@@ -1,14 +1,29 @@
 .header {
   grid-area: a;
-  background: #9fffdf;
-
+  background: #3f4257;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .logo{
   display: flex;
   align-items: center;
+
+ 
+ .boximg{
+  background: #ff5e3a;
+  height: 50px;
+  width: 70px;
+  text-align: center;
+  margin-right: 30px;
+  img{
+    padding: 10px;
+  }
+ }
   a{
-    display: inline-block;
+    
     text-decoration: none;
-    color: #696969;
+    color: #fff;
+   font-size: 1rem;
   }
 }

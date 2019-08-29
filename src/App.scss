@@ -12,16 +12,16 @@ h1,h2,h3,h4{
 .Wrapper {
   display: grid;
   grid-template-areas: "a a a""b c c""b c c""b c c";
-  grid-template-columns: 1fr 10fr;
-  grid-template-rows: 20vh 1fr;
-  grid-gap: 10px;
-  margin: 0 auto;
-  max-width: 1440px;
+  grid-template-columns: minmax(min-content,200px) 10fr;
+  grid-template-rows: 50px 1fr;
+
+ /* margin: 0 auto;
+  max-width: 1440px;*/
 }
 
 .content{
   grid-area: c;
-  background: #fff;
+  background: #edf2f6;
   padding-bottom: 50px;
 
 }
