@@ -1,0 +1,22 @@
+.box{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 2fr;
+    grid-template-rows: max-content;
+    background: #fff;
+    border-radius: 22px;
+    .messages{
+        display: flex;
+        justify-content: flex-start;
+        .item{
+            .boximg{
+                height: 30px;
+                width: 30px;
+                border-radius: 100%;
+                background: #696969;
+                border:2px solid #ff5e3a;
+                overflow: hidden;
+            }
+        }
+    }
+}

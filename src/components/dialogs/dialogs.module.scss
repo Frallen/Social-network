@@ -1,48 +1,42 @@
 h2{
     text-transform: uppercase;
     color:#696969;
+    padding-top: 20px;
+    padding-left: 30px;
 }
-.page{
+
+.dialog{
     display: grid;
-    grid-template-columns: 1fr 10fr;
+    grid-template-columns:1fr 10fr;
     grid-auto-rows: max-content;
     justify-content: center;
-
-}
-
-.sender{
-    .item{ 
-       .link{
-           text-decoration: none;
-           font-size: 25px;
-           color: #696969;
-       }
-}
-}
-
-.message{
-    .item{
-    display: flex;
-    justify-content: flex-start;
     align-items: center;
+    margin: 30px;
+    transition: 0.2s ease-in-out;
+    text-decoration: none;
     .avatar{
         padding-right: 50px;
+        text-align: center;
         .boximg{
+          margin: 0 auto;
         height: 50px;
         width: 50px;
         border-radius: 100%;
-        background: rgb(115, 255, 72);
+        background: #696969;
+        border:2px solid #ff5e3a;
+        overflow: hidden;
     }
     .name{
         font-weight: 500;
         font-size: 18px;
         text-transform: capitalize;
         display: block;
+        color:#ff5e3a;
+        padding-top: 10px;
     }
 }
     .boxtext{
-        border-radius: 20px;
-        border:3px solid #696969;
+     
         padding: 10px 15px;
         p{
         font-size: 15px;
@@ -50,8 +44,10 @@ h2{
         }
     }
 
-}}
-
-.active{
-   color: rgb(55, 252, 55);
 }
+
+.dialog:hover{
+  background: #fff;
+    transition: 0.2s ease-in-out;
+}
+

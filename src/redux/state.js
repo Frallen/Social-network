@@ -1,4 +1,6 @@
-import {renderTree} from "./../render"
+let renderTree=()=>{}
+
+
 let state ={
     Navigation:[
         {id:1, name:"Andrey",},
@@ -14,7 +16,8 @@ Bio:[
 P :[ 
     { id:1, message:"hi how are you?",like:21},
     { id:2, message:"My firt post",like:10}
-  ]
+  ],
+  newPostText:"Added from bll"
 },
 
 Messages:{
@@ -22,35 +25,44 @@ Messages:{
 /*СООБЩЕНИЯ ОТ ПОЛЬЗОВАТЕЛЕЙ*/
 
 M:[
-    {name:"Ura", text:"ha"},
-    {name:"Andrey", text:"hi"},
-    {name:"Dima", text:"hey"},
-    {name:"Petya", text:"go to home"},
-    {name:"zina", text:"uyo"}
+    { id:1, name:"Ura", text:"ha"},
+    { id:2, name:"Andrey", text:"hi"},
+    { id:3, name:"Dima", text:"hey"},
+    { id:4, name:"Petya", text:"go to home"},
+    { id:5, name:"zina", text:"uyo"}
 ],
 
 /*Кто написал */
-
+/*
 S:[
     {id:1, name:"Andrey"},
     {id:2, name:"Dima"},
     {id:3, name:"Zina"},
     {id:4, name:"Petya"},
     {id:5, name:"Ura"},
-],
+],*/
+}
 }
 
 
-}
-
-export let addpost= (postMessage)=>{
+export const addpost= ()=>{
     let newPost={
         id:3,
-        message:postMessage,
+        message:state.Profile.newPostText,
         like:5,
     }
     state.Profile.P.push(newPost);
-    renderTree(state);
+    state.Profile.newPostText="";
+    renderTree();
+}
+
+export const UpdateNewPostText= (newtext)=>{
+    state.Profile.newPostText =newtext;
+    renderTree();
+}
+
+export const subscribe= (observer)=>{
+    renderTree=observer;
 }
 
 export default state;

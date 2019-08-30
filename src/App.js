@@ -22,7 +22,7 @@ const App = (props) =>{
 <Navigation state={props.state.Navigation}></Navigation>
 <div className="content">
 
-<Route path="/profile" render={()=><Profile state={props.state.Profile} addpost={props.addpost}></Profile>}></Route>
+<Route path="/profile" render={()=><Profile UpdateNewPostText={props.UpdateNewPostText} state={props.state.Profile} addpost={props.addpost} newPostText={props.state.Profile}></Profile>}></Route>
 <Route path="/dialogs" render={()=><Dialogs state={props.state.Messages}></Dialogs>}></Route>
 <Route path="/news" render={()=><News></News>}></Route>
 <Route path="/music" render={()=><Music></Music>}></Route>

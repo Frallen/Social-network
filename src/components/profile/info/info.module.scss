@@ -1,16 +1,21 @@
 .bio{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  padding: 50px;
+    padding: 50px;
+   display: grid;
+   grid-template-columns: minmax(150px,200px) 300px;
+   align-items: center;
+   grid-gap: 30px;
+  justify-content: center;
 }
 .avatarbox{
-    height: 150px;
-    width: 200px;
+    height: 132px;
+    width: 132px;
     background: #eee;
+    border-radius: 100%;
+    border:6px solid #ff5e3a;
+    overflow: hidden;
 }
 .biotext{
-    margin-left: 30px;
+    
    p{
     color: #696969;
    }
