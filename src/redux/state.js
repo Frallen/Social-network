@@ -1,8 +1,13 @@
-let renderTree=()=>{}
+import profileReducer from "./profileReducer";
+import dialogReducer from "./dialogsReducer";
+let store={
 
 
-let state ={
-    Navigation:[
+/*_Приватный объект(сематика) */
+
+_state :{
+
+Navigation:[ 
         {id:1, name:"Andrey",},
         {id:2, name:"Georg",},
         {id:3, name:"Deren",}
@@ -31,38 +36,35 @@ M:[
     { id:4, name:"Petya", text:"go to home"},
     { id:5, name:"zina", text:"uyo"}
 ],
-
-/*Кто написал */
-/*
-S:[
-    {id:1, name:"Andrey"},
-    {id:2, name:"Dima"},
-    {id:3, name:"Zina"},
-    {id:4, name:"Petya"},
-    {id:5, name:"Ura"},
-],*/
+NewMessageBody:""
 }
-}
+},
 
+GetState(){
+    return this._state;
+},
 
-export const addpost= ()=>{
-    let newPost={
-        id:3,
-        message:state.Profile.newPostText,
-        like:5,
+_callSubscriber(){},
+
+subscribe(observer){
+    this._callSubscriber=observer;
+},
+    dispatch(action){
+        this._state.Profile=profileReducer(this._state.Profile, action)
+        this._state.Messages=dialogReducer(this._state.Messages, action)
+        this._callSubscriber(this._state)
     }
-    state.Profile.P.push(newPost);
-    state.Profile.newPostText="";
-    renderTree();
+   
+
+
 }
 
-export const UpdateNewPostText= (newtext)=>{
-    state.Profile.newPostText =newtext;
-    renderTree();
-}
 
-export const subscribe= (observer)=>{
-    renderTree=observer;
-}
 
-export default state;
+///                                                                          text локальная переменная
+
+
+
+
+
+export default store

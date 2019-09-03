@@ -11,7 +11,6 @@ import {Route} from 'react-router-dom';
 import Friends from './components/friends/friends';
 
 
-
 const App = (props) =>{
 
   return(
@@ -22,8 +21,8 @@ const App = (props) =>{
 <Navigation state={props.state.Navigation}></Navigation>
 <div className="content">
 
-<Route path="/profile" render={()=><Profile UpdateNewPostText={props.UpdateNewPostText} state={props.state.Profile} addpost={props.addpost} newPostText={props.state.Profile}></Profile>}></Route>
-<Route path="/dialogs" render={()=><Dialogs state={props.state.Messages}></Dialogs>}></Route>
+<Route path="/profile" render={()=><Profile  dispatch={props.dispatch}  store={props.store} ></Profile>}></Route>
+<Route path="/dialogs" render={()=><Dialogs  dispatch={props.dispatch} store={props.store}></Dialogs>}></Route>
 <Route path="/news" render={()=><News></News>}></Route>
 <Route path="/music" render={()=><Music></Music>}></Route>
 <Route path="/Settings" render={()=><Settings></Settings>}></Route>

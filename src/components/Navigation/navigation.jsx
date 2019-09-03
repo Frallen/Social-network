@@ -15,6 +15,7 @@ const Friendsonline = (props)=>{
 }
 
 const Navigation = (props) => {
+ 
     let friedns=props.state.map(f=><Friendsonline id={f.id} name={f.name}></Friendsonline>)
     return(
         <div className={classes.navigation}>

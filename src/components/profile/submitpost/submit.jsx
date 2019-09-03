@@ -1,18 +1,19 @@
 import React from "react";
 import classes from "./submit.module.scss"
-
-
+import { UpdateNewPostTextActionCreator, addpostActionCreator } from "../../../redux/profileReducer";
 
 const Submit = (props) => {
-   let newpost = React.createRef();
+
+    let newpost = React.createRef();
+
     let addpost=()=>{
-        props.addpost();
+        props.dispatch(addpostActionCreator());
    
     }
 
 let OnPostChange=()=>{
     let text =newpost.current.value;
-    props.UpdateNewPostText(text);
+    props.dispatch(UpdateNewPostTextActionCreator(text));
   
 }
 
