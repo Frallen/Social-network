@@ -6,8 +6,6 @@ import { UpdateNewMessagebodyCreator, SendMessageCreator } from "../../../redux/
 
 const Messageitem =(props)=>{
 
-debugger
-
 
     let onMessageChange=(e)=>{
         let body=e.target.value
@@ -39,5 +37,3 @@ debugger
 }
     
 
-
-export default Messageitem;

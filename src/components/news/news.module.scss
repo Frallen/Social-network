@@ -1,0 +1,40 @@
+.container{
+    margin: 30px;
+    background: #fff;
+    height: max-content;
+    border-radius: 15px;
+    .block{
+        padding: 10px;
+        display: grid;
+        grid-template-columns:repeat(auto-fit,minmax(250px,350px));
+        grid-gap: 30px;
+        grid-auto-rows: max-content;
+        .item{
+            .boximg{
+                height: 100px;
+                width: 100%;
+                overflow: hidden;
+               
+
+                img{
+                    object-fit: cover;
+                    height: 100%;
+                    width: 100%;
+                    transition: 0.3s ease-in-out;
+                }
+            
+            img:hover{
+                transform: scale(1.2);
+                transition: 0.3s ease-in-out;
+            }
+        }
+            .title{
+                color: #ff5e3a;
+
+            }
+            .text{
+                color: #727272;
+            }
+        } 
+    }
+}

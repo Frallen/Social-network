@@ -6,7 +6,7 @@ import Submit from "./submitpost/submit";
 import Info from "./info/Info";
 
 const Profile = (props) =>{
-  let state =props.store.GetState().Profile
+  let state =props.store.getState().Profile
     return(
         <div>
  
