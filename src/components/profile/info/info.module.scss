@@ -9,14 +9,24 @@
 .avatarbox{
     height: 132px;
     width: 132px;
-    background: #eee;
+    
     border-radius: 100%;
     border:6px solid #ff5e3a;
     overflow: hidden;
+    img{
+        height: 100%;
+        width: 100%;
+    }
 }
 .biotext{
-    
-   p{
-    color: #696969;
+    h2{
+        padding: 0;
+    }
+   ul{
+    padding: 0;
+    list-style-type: none;
+    li{
+        color: #696969;
    }
+}
 }

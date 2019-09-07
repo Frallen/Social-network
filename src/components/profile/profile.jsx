@@ -1,19 +1,19 @@
 import React from "react";
 import Contentheader from '../../img/content-header.jpg'
 import classes from "./profile.module.scss"
-import Myposts from "./myposts/myposts";
-import Submit from "./submitpost/submit";
-import Info from "./info/Info";
+import SubmitContainer from "./submitpost/submitContainer";
+import InfoConatiner from "./info/infoconatiner";
+import MypostContainer from "./myposts/mypostsContainer";
 
 const Profile = (props) =>{
-  let state =props.store.getState().Profile
+ 
     return(
         <div>
  
         <div className={classes.header}><img src={Contentheader} alt="" /></div>
-          <Info Bio={state.Bio}></Info>
-            <Submit dispatch={props.dispatch} newPostText={state.newPostText} ></Submit>
-          <Myposts P={state.P} ></Myposts>
+          <InfoConatiner store={props.store}></InfoConatiner>
+            <SubmitContainer store={props.store}></SubmitContainer>
+          <MypostContainer store={props.store} ></MypostContainer>
         </div>
     )
 }
