@@ -25,7 +25,7 @@ const Messageitem =(props)=>{
 }
 
 const Dialogs = (props)=>{
-    
+
     let onMessageChange=(e)=>{
         let body=e.target.value
        props.MessageChange(body)
