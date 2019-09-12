@@ -3,6 +3,7 @@ import dialogReducer from "./dialogsReducer";
 import navigationReducer from "./navigationReducer";
 import profileReducer from "./profileReducer";
 import newsReducer from "./NewsReducer";
+import SearchReducer from "./searchReducer";
 
 
 let reducers=combineReducers({
@@ -10,6 +11,7 @@ let reducers=combineReducers({
     Profile:profileReducer,
     Navigation:navigationReducer,
     News:newsReducer,
+    Search:SearchReducer,
 })
 
 

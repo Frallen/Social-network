@@ -36,7 +36,7 @@ const Dialogs = (props)=>{
     props.SendMessageClick()
 }
 
-    let MessageElement =props.messages.map(m=><Messageitem  id={m.id} name={m.name} text={m.text}></Messageitem>) 
+    let MessageElement =props.messages.map(m=><Messageitem  key={m.id} name={m.name} text={m.text}></Messageitem>) 
    
    
  

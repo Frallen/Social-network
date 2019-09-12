@@ -6,8 +6,8 @@ const Post = (props) =>{
         <div>
         <div className={classes.post}>
         <div className={classes.avatar}><img src="" alt=""/></div>
-<p className={classes.text}>{props.message}<span className={classes.like}><i className="far fa-heart"></i>{props.like}</span></p>
-   
+<p className={classes.text}>{props.message}</p>
+<a className={classes.like} href=""><i className="far fa-heart"></i>{props.like}</a>
 </div>
       
         </div>

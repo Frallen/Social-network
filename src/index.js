@@ -11,21 +11,16 @@ import {Provider} from "react-redux"
 
 
 
-let callSubscriber=(state)=>{
+
 
 
 ReactDOM.render(
     <BrowserRouter>
-    <Provider value={store}>
+    <Provider store={store}>
 <App />
 </Provider>
 </BrowserRouter>, document.getElementById('root'));
 
-}
 
-callSubscriber(store.getState());
 
-store.subscribe(()=>{
-    let state =store.getState()
-    callSubscriber(state);
-});
+

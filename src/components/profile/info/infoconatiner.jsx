@@ -1,12 +1,14 @@
-import React from "react"
 import Info from "./Info"
+import { connect } from "react-redux"
 
-const InfoConatiner=(props)=>{
 
-
-    return(
-        <Info Bio={props.store.getState().Profile.Bio}></Info>
-    )
+let mapStateToProps=(state)=>{
+    return{
+        Bio:state.Profile.Bio
+    }
 }
+
+
+const InfoConatiner=connect(mapStateToProps)(Info)
 
 export default InfoConatiner

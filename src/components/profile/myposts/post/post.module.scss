@@ -3,6 +3,7 @@
     justify-content: flex-start;
     align-items: center;
     padding-top: 20px;
+    position: relative;
 }
 
 .avatar {
@@ -20,8 +21,11 @@
 
 .like {
     position: absolute;
-    right: -24px;
-    top: 19px;
+    left: 165px;
+    top: 52px;
+    color: #696969;
+    text-decoration: none;
+    
     i{
         padding-right: 5px;
     }

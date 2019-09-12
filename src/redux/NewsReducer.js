@@ -12,7 +12,8 @@ let initialstate={
 }
 
 const NewsReducer=(state=initialstate,action)=>{
-    return state
+    let stateCopy ={...state}
+    return stateCopy
 }
 
 export default NewsReducer

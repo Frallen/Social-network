@@ -1,4 +1,3 @@
-import React from "react";
 import Dialogs from "./dialogs";
 import {
   UpdateNewMessagebodyCreator,
@@ -28,34 +27,4 @@ let mapDispatchToProps=(dispatch)=>{
 const DialogsConatainer= connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 
-/*
-const DialogsConatainer = (props) => {
- 
-  return (
-    <Consumer>
-    { 
-      (store)=>{
-
-        let MessageChange = (body) => {
-          store.dispatch(UpdateNewMessagebodyCreator(body));
-        };
-      
-        let SendMessageClick = () => {
-          store.dispatch(SendMessageCreator());
-        };
-
-      return( 
-      <Dialogs
-        MessageChange={MessageChange}
-        SendMessageClick={SendMessageClick}
-        NewMessageBody={store.getState().Messages.NewMessageBody}
-        messages={store.getState().Messages.M}
-      ></Dialogs>
-      )
-      }
-    }
-    </Consumer>
-  );
-};
-*/
 export default DialogsConatainer;

@@ -23,7 +23,7 @@ const Bio =(props)=>{
 
 const Info = (props) =>{
 
-    let bioinfo = props.Bio.map(b=><Bio id={b.id} name={b.name} dob={b.dob} city={b.city} edu={b.edu} website={b.website}></Bio>)
+    let bioinfo = props.Bio.map(b=><Bio key={b.id} name={b.name} dob={b.dob} city={b.city} edu={b.edu} website={b.website}></Bio>)
     return(
    <div>
        {bioinfo}

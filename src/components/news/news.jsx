@@ -4,7 +4,7 @@ import Newsitem from "./newsitem/newsitem"
 const News = (props)=> {
 //let state=props.store.getState().News
 
-    let Newscontent =props.store.getState().News.NewsList.map(n=><Newsitem id={n.id} title={n.title}
+    let Newscontent =props.News.map(n=><Newsitem key={n.id} title={n.title}
         text={n.text}></Newsitem>)
 
     return(

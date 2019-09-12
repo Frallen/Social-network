@@ -5,15 +5,15 @@ import SubmitContainer from "./submitpost/submitContainer";
 import InfoConatiner from "./info/infoconatiner";
 import MypostContainer from "./myposts/mypostsContainer";
 
-const Profile = (props) =>{
+const Profile = () =>{
  
     return(
         <div>
  
         <div className={classes.header}><img src={Contentheader} alt="" /></div>
-          <InfoConatiner store={props.store}></InfoConatiner>
-            <SubmitContainer store={props.store}></SubmitContainer>
-          <MypostContainer store={props.store} ></MypostContainer>
+          <InfoConatiner></InfoConatiner>
+            <SubmitContainer></SubmitContainer>
+          <MypostContainer></MypostContainer>
         </div>
     )
 }

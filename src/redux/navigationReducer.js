@@ -6,11 +6,13 @@ let initialstate={
     ]
 }
 
+
+
 const navigationReducer=(state=initialstate,action)=>{
 
+    let stateCopy={...state}
 
-
-    return state
+    return stateCopy
 }
 
 export default navigationReducer
