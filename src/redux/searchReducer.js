@@ -7,12 +7,13 @@ const SetUsers="SetUsers"
 let initialstate={
 
  users:[
-    {id:1,photo:photo, Name:"Julian Ashton Thompson",Age:32,Gender:"Male",City:"NY",followed:true},
+    /*{id:1,photo:photo, Name:"Julian Ashton Thompson",Age:32,Gender:"Male",City:"NY",followed:true},
     {id:2,photo:photo, Name:"Gavin Christian James",Age:15,Gender:"Male",City:"Woodland",followed:false},
     {id:3,photo:photo, Name:"Jack Colin Peterson",Age:29,Gender:"Male",City:"Livonia",},
     {id:4,photo:photo, Name:"Jason Jackson Sanders",Age:27,Gender:"Male",City:"Chicago",followed:true},
     {id:5,photo:photo, Name:"Jesse Aaron Scott",Age:22,Gender:"Male",City:"ATTICA",followed:false},
     {id:6,photo:photo, Name:"Daniel Mason Turner",Age:18,Gender:"Male",City:"NY",followed:true},
+*/
 ]
 }
 
