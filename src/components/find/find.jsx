@@ -10,16 +10,7 @@ class find extends React.Component{
       this.props.SetUsers(response.data.items)
   })
 }
-  /*
-    loadusers=()=>{ 
-        if (this.props.Search.length===0){
-          axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response=>{
-            this.props.SetUsers(response.data.items)
-        })
-        }
-        
-        }*/
-
+ ,,и
 
     render(){
         return <div className={classes.ns}>
