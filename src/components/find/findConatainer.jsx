@@ -1,10 +1,13 @@
-import {connect} from "react-redux"
+import { connect } from "react-redux"
+import { FollowAC, SetCurrentPageAC, SetusersAC, UnfollowAC,SetTotalUsersCountAC } from "../../redux/searchReducer"
 import find from "./find"
-import { FollowAC, UnfollowAC, SetusersAC } from "../../redux/searchReducer"
 
 let mapStateToProps=(state)=>{
     return{
-        Search:state.Search.users
+        Search:state.Search.users,
+        pageSize:state.Search.pageSize,
+        totalUsersCount:state.Search.totalUsersCount,
+        currentPage:state.Search.currentPage,
     }
 }
 let mapdispatchToProps=(dispatch)=>{
@@ -17,6 +20,12 @@ let mapdispatchToProps=(dispatch)=>{
         },
         SetUsers:(users)=>{
             dispatch(SetusersAC(users))
+        },
+        SetCurrentPage:(PageNumer)=>{
+            dispatch(SetCurrentPageAC(PageNumer))
+        },
+        SetTotalUsersCount:(TotalCount)=>{
+            dispatch(SetTotalUsersCountAC(TotalCount))
         }
     }
 }
