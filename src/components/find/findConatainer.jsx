@@ -1,20 +1,25 @@
 import { connect } from "react-redux"
-import { FollowAC, SetCurrentPageAC, SetusersAC, UnfollowAC,SetTotalUsersCountAC } from "../../redux/searchReducer"
+import { FollowAC, SetCurrentPageAC, SetusersAC, UnfollowAC,SetTotalUsersCountAC, ToggleisfetchingAC } from "../../redux/searchReducer"
 import React from "react";
 import * as axios from "axios";
 import Users from "./users";
+import Preloader from "../common/preloader/preloader";
+
+
 
 class UsersContainer extends React.Component {
     /* constructor(props) {
       super(props);
     }
   */
+
     componentDidMount() {
-      axios
-        .get(
+      this.props.Toggleisfetching(true)
+      axios.get(
           `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
         )
         .then(response => {
+          this.props.Toggleisfetching(false)
           this.props.SetUsers(response.data.items);
           this.props.SetTotalUsersCount(response.data.totalCount);
         });
@@ -22,17 +27,22 @@ class UsersContainer extends React.Component {
   
     onPageChanged = pageNumer => {
       this.props.SetCurrentPage(pageNumer);
+      this.props.Toggleisfetching(true)
       axios
         .get(
           `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumer}&count=${this.props.pageSize}`
         )
         .then(response => {
+          this.props.Toggleisfetching(false)
           this.props.SetUsers(response.data.items);
         });
     };
   
     render() {
-      return (
+      //чекакем переменную в редьюссере и возращаем тру фолз
+      return <>
+      
+      {this.props.isfetching ? <Preloader></Preloader> :null}
         <Users
           totalUsersCount={this.props.totalUsersCount}
           pageSize={this.props.pageSize}
@@ -42,7 +52,8 @@ class UsersContainer extends React.Component {
           follow={this.props.follow}
           unfollow={this.props.unfollow}
         ></Users>
-      );
+        </>
+      
     }
   }
 
@@ -54,6 +65,7 @@ let mapStateToProps=(state)=>{
         pageSize:state.Search.pageSize,
         totalUsersCount:state.Search.totalUsersCount,
         currentPage:state.Search.currentPage,
+      isfetching:state.Search.isfetching,
     }
 }
 let mapdispatchToProps=(dispatch)=>{
@@ -72,6 +84,9 @@ let mapdispatchToProps=(dispatch)=>{
         },
         SetTotalUsersCount:(TotalCount)=>{
             dispatch(SetTotalUsersCountAC(TotalCount))
+        },
+        Toggleisfetching:(isfetching)=>{
+          dispatch(ToggleisfetchingAC(isfetching))
         }
     }
 }
