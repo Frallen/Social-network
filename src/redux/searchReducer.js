@@ -1,9 +1,9 @@
-const follow = "follow";
-const unfollow = "unfollow";
-const SetUsers = "SetUsers";
-const SetCurrentPage = "SetCurrentPage";
-const SetTotalUsersCount = "SetTotalUsersCount";
-const Toggleisfetching = "Toggleisfetching";
+const Follow = "follow";
+const Unfollow = "unfollow";
+const Setusers = "SetUsers";
+const SetcurrentPage = "SetCurrentPage";
+const SettotalUserscount = "SetTotalUsersCount";
+const ToggleIsfetching = "Toggleisfetching";
 let initialstate = {
   users: [
     /*{id:1,photo:photo, Name:"Julian Ashton Thompson",Age:32,Gender:"Male",City:"NY",followed:true},
@@ -22,7 +22,7 @@ let initialstate = {
 
 const SearchReducer = (state = initialstate, action) => {
   switch (action.type) {
-    case follow:
+    case Follow:
       return {
         ...state,
         /*варианты с изменением массива */
@@ -35,7 +35,7 @@ const SearchReducer = (state = initialstate, action) => {
           return u;
         })
       };
-    case unfollow:
+    case Unfollow:
       return {
         ...state,
         users: state.users.map(u => {
@@ -45,23 +45,23 @@ const SearchReducer = (state = initialstate, action) => {
           return u;
         })
       };
-    case SetUsers:
+    case Setusers:
       return {
         /*      старые юзеры заменяются новыми их action */
         ...state,
         users: [...action.users]
       };
-    case SetCurrentPage:
+    case SetcurrentPage:
       return {
         ...state,
         currentPage: action.currentPage
       };
-    case SetTotalUsersCount:
+    case SettotalUserscount:
       return {
         ...state,
         totalUsersCount: action.TotalUsersCount
       };
-    case Toggleisfetching:
+    case ToggleIsfetching:
       return {
         ...state,
         isfetching: action.isfetching
@@ -71,19 +71,19 @@ const SearchReducer = (state = initialstate, action) => {
   }
 };
 
-export const FollowAC = userid => ({ type: follow, userid });
-export const UnfollowAC = userid => ({ type: unfollow, userid });
-export const SetusersAC = users => ({ type: SetUsers, users });
-export const SetCurrentPageAC = currentPage => ({
-  type: SetCurrentPage,
+export const follow = userid => ({ type: Follow, userid });
+export const unfollow = userid => ({ type:Unfollow, userid });
+export const SetUsers = users => ({ type: Setusers, users });
+export const SetCurrentPage = currentPage => ({
+  type: SetcurrentPage,
   currentPage
 });
-export const SetTotalUsersCountAC = TotalUsersCount => ({
-  type: SetTotalUsersCount,
+export const SetTotalUsersCount = TotalUsersCount => ({
+  type: SettotalUserscount,
   TotalUsersCount
 });
-export const ToggleisfetchingAC = isfetching => ({
-  type: Toggleisfetching,
+export const Toggleisfetching = isfetching => ({
+  type: ToggleIsfetching,
   isfetching
 });
 

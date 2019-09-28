@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { FollowAC, SetCurrentPageAC, SetusersAC, UnfollowAC,SetTotalUsersCountAC, ToggleisfetchingAC } from "../../redux/searchReducer"
+import { follow,unfollow,SetUsers,SetCurrentPage,SetTotalUsersCount,Toggleisfetching} from "../../redux/searchReducer"
 import React from "react";
 import * as axios from "axios";
 import Users from "./users";
@@ -13,7 +13,9 @@ class UsersContainer extends React.Component {
     }
   */
 
+
     componentDidMount() {
+ 
       this.props.Toggleisfetching(true)
       axios.get(
           `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
@@ -65,11 +67,14 @@ let mapStateToProps=(state)=>{
         pageSize:state.Search.pageSize,
         totalUsersCount:state.Search.totalUsersCount,
         currentPage:state.Search.currentPage,
-      isfetching:state.Search.isfetching,
+/*Это пропс bool*/      isfetching:state.Search.isfetching,
     }
 }
+/*
 let mapdispatchToProps=(dispatch)=>{
-    return{
+
+  
+   /* return{
         follow:(userid)=>{
             dispatch(FollowAC(userid))
         },
@@ -90,11 +95,20 @@ let mapdispatchToProps=(dispatch)=>{
         }
     }
 }
+*/
 
 
 
-
-const FindContainer =connect(mapStateToProps,mapdispatchToProps)(UsersContainer)
+const FindContainer =connect(mapStateToProps,{
+  //Вместо педавания друг другу ссылкок,сразу делаем ссылку из редьюсера
+  // имя одинаковое 
+  follow,
+  unfollow,
+  SetUsers,
+  SetCurrentPage,
+  SetTotalUsersCount,
+Toggleisfetching,
+})(UsersContainer)
 
 
 

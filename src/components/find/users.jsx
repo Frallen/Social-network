@@ -1,19 +1,18 @@
 import React from "react"
 import classes from "./find.module.scss";
-import photo from "./../../img/user.png"
-
+import user from "./../../img/user.png"
+import {NavLink} from "react-router-dom"
 const Users =(props)=>{
 
   /*Для вывода конкретного числа пользователей делим общее число пользователей на размер страницы */
     //  матх.сейл это округление в большую сторону
+    // ебать в корень пагинатор
     let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
     for (let i = 1; i <= pageCount; i++) {
       pages.push(i);
     }
-    
-
-
+ 
     return(
   <div className={classes.ns}>
           <div className={classes.pages}>
@@ -30,16 +29,19 @@ const Users =(props)=>{
               );
             })}
           </div>
+          
           <div className={classes.container}>
             {/*Теперь из-за классовой компоненты недоступны пропсы,нужен this */
             props.Search.map(p => (
               <div key={p.id}>
                 <div className={classes.profile}>
                   <div className={classes.avatarbox}>
+                    <NavLink to={"/profile/"+p.id}>
                     <img
-                      src={p.photos.small != null ? p.photos.small : photo}
+                      src={p.photos.small != null ? p.photos.small : user}
                       alt=""
                     />
+                    </NavLink>
                   </div>
                   <div className={classes.info}>
                     <h3 className={classes.name}>{p.name}</h3>
@@ -72,11 +74,14 @@ const Users =(props)=>{
               </div>
             ))}
           </div>
-          <button onClick={props.loadusers} className={classes.loadbutton}>
-            Load more
-          </button>
+    
         </div>
     )
   }
+/*
+  <button onClick={props.loadusers} className={classes.loadbutton}>
+  Load more
+</button>
+*/
 
   export default Users
