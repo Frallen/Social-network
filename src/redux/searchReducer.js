@@ -5,15 +5,7 @@ const SetcurrentPage = "SetCurrentPage";
 const SettotalUserscount = "SetTotalUsersCount";
 const ToggleIsfetching = "Toggleisfetching";
 let initialstate = {
-  users: [
-    /*{id:1,photo:photo, Name:"Julian Ashton Thompson",Age:32,Gender:"Male",City:"NY",followed:true},
-    {id:2,photo:photo, Name:"Gavin Christian James",Age:15,Gender:"Male",City:"Woodland",followed:false},
-    {id:3,photo:photo, Name:"Jack Colin Peterson",Age:29,Gender:"Male",City:"Livonia",},
-    {id:4,photo:photo, Name:"Jason Jackson Sanders",Age:27,Gender:"Male",City:"Chicago",followed:true},
-    {id:5,photo:photo, Name:"Jesse Aaron Scott",Age:22,Gender:"Male",City:"ATTICA",followed:false},
-    {id:6,photo:photo, Name:"Daniel Mason Turner",Age:18,Gender:"Male",City:"NY",followed:true},
-*/
-  ],
+  users: [],
   pageSize: 9,
   totalUsersCount: 0,
   currentPage: 1,
@@ -29,7 +21,7 @@ const SearchReducer = (state = initialstate, action) => {
         /*      https://prnt.sc/p5emse          */
         /// ... три точки спред оператор (копирование массива)
         users: state.users.map(u => {
-          if (u.id === action.userid) {
+          if (u.id === action.userId) {
             return { ...u, followed: true };
           }
           return u;
@@ -39,7 +31,7 @@ const SearchReducer = (state = initialstate, action) => {
       return {
         ...state,
         users: state.users.map(u => {
-          if (u.id === action.userid) {
+          if (u.id === action.userId) {
             return { ...u, followed: false };
           }
           return u;
@@ -71,8 +63,8 @@ const SearchReducer = (state = initialstate, action) => {
   }
 };
 
-export const follow = userid => ({ type: Follow, userid });
-export const unfollow = userid => ({ type:Unfollow, userid });
+export const follow = userId => ({ type: Follow, userId });
+export const unfollow = userId => ({ type:Unfollow, userId });
 export const SetUsers = users => ({ type: Setusers, users });
 export const SetCurrentPage = currentPage => ({
   type: SetcurrentPage,

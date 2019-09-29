@@ -5,8 +5,6 @@ import * as axios from "axios";
 import Users from "./users";
 import Preloader from "../common/preloader/preloader";
 
-
-
 class UsersContainer extends React.Component {
     /* constructor(props) {
       super(props);
@@ -18,7 +16,8 @@ class UsersContainer extends React.Component {
  
       this.props.Toggleisfetching(true)
       axios.get(
-          `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
+          `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+          {  withCredentials:true,}
         )
         .then(response => {
           this.props.Toggleisfetching(false)
@@ -32,8 +31,9 @@ class UsersContainer extends React.Component {
       this.props.Toggleisfetching(true)
       axios
         .get(
-          `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumer}&count=${this.props.pageSize}`
-        )
+          `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumer}&count=${this.props.pageSize}`,
+         {  withCredentials:true,}
+         )
         .then(response => {
           this.props.Toggleisfetching(false)
           this.props.SetUsers(response.data.items);

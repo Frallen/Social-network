@@ -2,7 +2,6 @@ import React from "react";
 import { Route } from "react-router-dom";
 import "./App.scss";
 import Friends from "./components/friends/friends";
-import Header from "./components/header/header";
 import Music from "./components/music/music";
 import ProfileContainer from "./components/profile/profileContainer";
 import Settings from "./components/settings/settings";
@@ -10,11 +9,12 @@ import DialogsConatainer from "./components/dialogs/dialogsContainer";
 import NavigationContainer from "./components/Navigation/navigationContainer";
 import NewsContainer from "./components/news/newsContainer";
 import FindContainer from "./components/find/findConatainer";
+import HeaderContainer from "./components/header/headerContainer";
 
 const App = () => {
   return (
     <div className="Wrapper">
-      <Header></Header>
+<HeaderContainer></HeaderContainer>
       <NavigationContainer></NavigationContainer>
       <div className="content">
         <Route path="/profile/:userId?" render={() => <ProfileContainer></ProfileContainer>}></Route>

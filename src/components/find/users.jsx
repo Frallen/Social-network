@@ -1,7 +1,8 @@
-import React from "react"
+import React from "react";
+import { NavLink } from "react-router-dom";
+import user from "./../../img/user.png";
+import * as axios from "axios";
 import classes from "./find.module.scss";
-import user from "./../../img/user.png"
-import {NavLink} from "react-router-dom"
 const Users =(props)=>{
 
   /*Для вывода конкретного числа пользователей делим общее число пользователей на размер страницы */
@@ -18,7 +19,7 @@ const Users =(props)=>{
           <div className={classes.pages}>
             {pages.map(p => {
               return (
-                <button
+                <button key={p.id}
                   className={props.currentPage === p && classes.selectedpage}
                   onClick={e => {
                     props.onPageChanged(p);
@@ -32,56 +33,60 @@ const Users =(props)=>{
           
           <div className={classes.container}>
             {/*Теперь из-за классовой компоненты недоступны пропсы,нужен this */
-            props.Search.map(p => (
-              <div key={p.id}>
+            props.Search.map(u => (
+              <div key={u.id}>
                 <div className={classes.profile}>
                   <div className={classes.avatarbox}>
-                    <NavLink to={"/profile/"+p.id}>
+                    <NavLink to={"/profile/"+u.id}>
                     <img
-                      src={p.photos.small != null ? p.photos.small : user}
+                      src={u.photos.small != null ? u.photos.small : user}
                       alt=""
                     />
                     </NavLink>
                   </div>
                   <div className={classes.info}>
-                    <h3 className={classes.name}>{p.name}</h3>
+                    <h3 className={classes.name}>{u.name}</h3>
                     <ul>
-                      <li>{p.Age}</li>
-                      <li>{p.Gender}</li>
-                      <li>{p.City}</li>
+                      <li>{u.Age}</li>
+                      <li>{u.Gender}</li>
+                      <li>{u.City}</li>
                     </ul>
                   </div>
-                  {p.followed ? (
-                    <button
-                      className={classes.follow}
-                      onClick={() => {
-                        props.follow(p.id);
-                      }}
-                    >
-                      Follow
-                    </button>
-                  ) : (
-                    <button
-                      className={classes.follow}
-                      onClick={() => {
-                        props.unfollow(p.id);
-                      }}
-                    >
-                      Unfollow
-                    </button>
-                  )}
-                </div>
+                  {u.followed ? <button className={classes.unfollow} onClick={() => { 
+       
+       axios.delete(
+         `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{
+           withCredentials:true,
+         headers:{"API-KEY":"c3168964-292a-4dbd-a604-1aeccb93a230"}
+         }
+       )
+       .then(response => {
+         if(response.data.resultCode===0){
+             props.unfollow(u.id);
+         }
+         
+       });
+ }} >Unfollow</button> :<button className={classes.follow} onClick={() => { 
+                     axios.post(
+                      `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},
+                      {
+                        withCredentials:true,
+                        headers:{"API-KEY":"c3168964-292a-4dbd-a604-1aeccb93a230"}
+                      }
+                    )
+                    .then(response => {
+                      if(response.data.resultCode===0){
+                          props.follow(u.id);
+                      }
+                    })
+                  }}>Follow</button> 
+                  }</div>
               </div>
             ))}
           </div>
-    
         </div>
     )
   }
-/*
-  <button onClick={props.loadusers} className={classes.loadbutton}>
-  Load more
-</button>
-*/
+
 
   export default Users
