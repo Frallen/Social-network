@@ -3,8 +3,8 @@ import Logo from "../../img/logo.png";
 import classes from "./header.module.scss";
 import { NavLink } from "react-router-dom";
 //import user from "./../../img/user.jpg"
-const Header = (props) => {
-/*let Photo =props.photo.photos
+const Header = props => {
+  /*let Photo =props.photo.photos
   <span><img src={ Photo.large != null ? Photo.small : user} alt=""/></span>*/
   return (
     <div className={classes.header}>
@@ -16,14 +16,9 @@ const Header = (props) => {
       </div>
       <ul className={classes.login}>
         <li>
-
- 
-          { 
-            //если автаризован(true) то из пропсов достать логин,если нет
+          {//если автаризован(true) то из пропсов достать логин,если нет
           //  то показать ссылку на авторизацию
-            props.isAuth ? props.login: 
-          <NavLink to={"/login"}>Login</NavLink>
-          }
+          props.isAuth ? props.login : <NavLink to={"/login"}>Login</NavLink>}
         </li>
       </ul>
     </div>

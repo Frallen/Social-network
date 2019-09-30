@@ -1,8 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import user from "./../../img/user.png";
-import * as axios from "axios";
 import classes from "./find.module.scss";
+import { usersAPI } from "../../api/API";
 const Users =(props)=>{
 
   /*Для вывода конкретного числа пользователей делим общее число пользователей на размер страницы */
@@ -29,8 +29,7 @@ const Users =(props)=>{
                 </button>
               );
             })}
-          </div>
-          
+          </div> 
           <div className={classes.container}>
             {/*Теперь из-за классовой компоненты недоступны пропсы,нужен this */
             props.Search.map(u => (
@@ -53,32 +52,12 @@ const Users =(props)=>{
                     </ul>
                   </div>
                   {u.followed ? <button className={classes.unfollow} onClick={() => { 
-       
-       axios.delete(
-         `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{
-           withCredentials:true,
-         headers:{"API-KEY":"c3168964-292a-4dbd-a604-1aeccb93a230"}
-         }
-       )
-       .then(response => {
-         if(response.data.resultCode===0){
-             props.unfollow(u.id);
-         }
-         
-       });
+        usersAPI.unfollowUsers(u.id).then(
+         //if(response.data.resultCode===0){
+             props.unfollow(u.id));
  }} >Unfollow</button> :<button className={classes.follow} onClick={() => { 
-                     axios.post(
-                      `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},
-                      {
-                        withCredentials:true,
-                        headers:{"API-KEY":"c3168964-292a-4dbd-a604-1aeccb93a230"}
-                      }
-                    )
-                    .then(response => {
-                      if(response.data.resultCode===0){
-                          props.follow(u.id);
-                      }
-                    })
+                    //из юзерапи вызваю фолловюзер закидываю из пропсов айди, отписка тоже самое
+                    usersAPI.followUsers(u.id).then(props.follow(u.id))
                   }}>Follow</button> 
                   }</div>
               </div>

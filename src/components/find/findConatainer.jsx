@@ -1,50 +1,48 @@
-import { connect } from "react-redux"
-import { follow,unfollow,SetUsers,SetCurrentPage,SetTotalUsersCount,Toggleisfetching} from "../../redux/searchReducer"
+import { connect } from "react-redux";
+import {
+  follow,
+  unfollow,
+  SetUsers,
+  SetCurrentPage,
+  SetTotalUsersCount,
+  Toggleisfetching
+} from "../../redux/searchReducer";
 import React from "react";
-import * as axios from "axios";
 import Users from "./users";
 import Preloader from "../common/preloader/preloader";
+import { usersAPI } from "../../api/API";
 
 class UsersContainer extends React.Component {
-    /* constructor(props) {
+  /* constructor(props) {
       super(props);
     }
   */
 
+  componentDidMount() {
+    this.props.Toggleisfetching(true);
+    //api в api.js , вызываем функцию закидываем пропсы
+    usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+      this.props.Toggleisfetching(false);
+      this.props.SetUsers(data.items);
+      this.props.SetTotalUsersCount(data.totalCount);
+    });
+  }
 
-    componentDidMount() {
- 
-      this.props.Toggleisfetching(true)
-      axios.get(
-          `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
-          {  withCredentials:true,}
-        )
-        .then(response => {
-          this.props.Toggleisfetching(false)
-          this.props.SetUsers(response.data.items);
-          this.props.SetTotalUsersCount(response.data.totalCount);
-        });
-    }
-  
-    onPageChanged = pageNumer => {
-      this.props.SetCurrentPage(pageNumer);
-      this.props.Toggleisfetching(true)
-      axios
-        .get(
-          `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumer}&count=${this.props.pageSize}`,
-         {  withCredentials:true,}
-         )
-        .then(response => {
-          this.props.Toggleisfetching(false)
-          this.props.SetUsers(response.data.items);
-        });
-    };
-  
-    render() {
-      //чекакем переменную в редьюссере и возращаем тру фолз
-      return <>
-      
-      {this.props.isfetching ? <Preloader></Preloader> :null}
+  onPageChanged = pageNumer => {
+    this.props.SetCurrentPage(pageNumer);
+    this.props.Toggleisfetching(true);
+
+    usersAPI.getUsers(pageNumer, this.props.pageSize).then(data => {
+      this.props.Toggleisfetching(false);
+      this.props.SetUsers(data.items);
+    });
+  };
+
+  render() {
+    //чекакем переменную в редьюссере и возращаем тру фолз
+    return (
+      <>
+        {this.props.isfetching ? <Preloader></Preloader> : null}
         <Users
           totalUsersCount={this.props.totalUsersCount}
           pageSize={this.props.pageSize}
@@ -54,22 +52,20 @@ class UsersContainer extends React.Component {
           follow={this.props.follow}
           unfollow={this.props.unfollow}
         ></Users>
-        </>
-      
-    }
+      </>
+    );
   }
-
-
-
-let mapStateToProps=(state)=>{
-    return{
-        Search:state.Search.users,
-        pageSize:state.Search.pageSize,
-        totalUsersCount:state.Search.totalUsersCount,
-        currentPage:state.Search.currentPage,
-/*Это пропс bool*/      isfetching:state.Search.isfetching,
-    }
 }
+
+let mapStateToProps = state => {
+  return {
+    Search: state.Search.users,
+    pageSize: state.Search.pageSize,
+    totalUsersCount: state.Search.totalUsersCount,
+    currentPage: state.Search.currentPage,
+    /*Это пропс bool*/ isfetching: state.Search.isfetching
+  };
+};
 /*
 let mapdispatchToProps=(dispatch)=>{
 
@@ -97,23 +93,18 @@ let mapdispatchToProps=(dispatch)=>{
 }
 */
 
+const FindContainer = connect(
+  mapStateToProps,
+  {
+    //Вместо педавания друг другу ссылкок,сразу делаем ссылку из редьюсера
+    // имя одинаковое
+    follow,
+    unfollow,
+    SetUsers,
+    SetCurrentPage,
+    SetTotalUsersCount,
+    Toggleisfetching
+  }
+)(UsersContainer);
 
-
-const FindContainer =connect(mapStateToProps,{
-  //Вместо педавания друг другу ссылкок,сразу делаем ссылку из редьюсера
-  // имя одинаковое 
-  follow,
-  unfollow,
-  SetUsers,
-  SetCurrentPage,
-  SetTotalUsersCount,
-Toggleisfetching,
-})(UsersContainer)
-
-
-
-
-
-
-
-export default FindContainer
+export default FindContainer;

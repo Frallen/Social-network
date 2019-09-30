@@ -21,6 +21,16 @@ class UserContainer extends React.Component{
        
       }
     )
+    /* 
+    
+        
+   profileAPI.myProfile(userId).then(data => {
+    
+    this.props.Userprofile(data);
+  });
+  }
+    
+    */
   }
 
   render(){
