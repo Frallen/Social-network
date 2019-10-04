@@ -25,12 +25,13 @@ export const usersAPI = {
 
 export const authAPI = {
   auth(data) {
+    
     return instance.post(`auth/me/${data}`).then(response => response.data);
   }
 };
 
 export const profileAPI = {
   myProfile(userId) {
-    return instance.post(`profile/` + userId).then(response => response.data);
+    return instance.get(`profile/${userId}`).then(response => response.data);
   }
 };

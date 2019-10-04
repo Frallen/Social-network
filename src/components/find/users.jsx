@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import user from "./../../img/user.png";
 import classes from "./find.module.scss";
-import { usersAPI } from "../../api/API";
 const Users =(props)=>{
 
   /*Для вывода конкретного числа пользователей делим общее число пользователей на размер страницы */
@@ -51,13 +50,11 @@ const Users =(props)=>{
                       <li>{u.City}</li>
                     </ul>
                   </div>
-                  {u.followed ? <button className={classes.unfollow} onClick={() => { 
-        usersAPI.unfollowUsers(u.id).then(
-         //if(response.data.resultCode===0){
-             props.unfollow(u.id));
- }} >Unfollow</button> :<button className={classes.follow} onClick={() => { 
-                    //из юзерапи вызваю фолловюзер закидываю из пропсов айди, отписка тоже самое
-                    usersAPI.followUsers(u.id).then(props.follow(u.id))
+                  {u.followed ? <button disabled={props.followInProgress.some(id=>id===u.id)} className={classes.unfollow} onClick={() => { 
+                    
+                 props.follow(u.id)
+ }} >Unfollow</button> :<button disabled={props.followInProgress.some(id=>id===u.id)} className={classes.follow} onClick={() => { 
+                props.unfollow(u.id)
                   }}>Follow</button> 
                   }</div>
               </div>

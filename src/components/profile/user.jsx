@@ -6,30 +6,24 @@ import Preloader from "../common/preloader/preloader";
 
 const User = props => {
   //если нет профайла(!)
-  if (!props.Profile) {
+
+  if (!props.user) {
     return <Preloader></Preloader>;
   }
 
   let Onaddpost = () => {
-    
     props.addpost();
   };
 
   let OnPostChange = e => {
     let text = e.target.value;
-  
+
     props.PostChange(text);
   };
-  /*
-let Profile = props.Profile
- Object.keys(Profile).map(function(key,index){
-  Profile[key] *=2
-})*/
 
-  let Profile = props.Profile;
-  /*
-//for (let[key,value] of Object.entries(Profile))
-let Profile =new Map(Object.entries(mass))*/
+
+  let Profile = props.user;
+
   return (
     <div>
       <div className={classes.header}>

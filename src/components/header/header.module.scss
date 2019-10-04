@@ -1,39 +1,38 @@
-
 .header {
   grid-area: a;
   background: #3f4257;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
 }
-.logo{
+.logo {
   display: flex;
   align-items: center;
 
- 
- .boximg{
-  background: #ff5e3a;
-  height: 50px;
-  width: 70px;
-  text-align: center;
-  margin-right: 30px;
-  img{
-    padding: 10px;
+  .boximg {
+    background: #ff5e3a;
+    height: 50px;
+    width: 70px;
+    text-align: center;
+    margin-right: 30px;
+    img {
+      padding: 10px;
+    }
   }
- }
- .logotext{
-    
+  .logotext {
     text-decoration: none;
     color: #fff;
-   font-size: 1rem;
+    font-size: 1rem;
   }
 }
 
-.login{
-padding:0 10px;
-  a{
-    text-decoration: none;
+.login {
+  padding: 0 10px;
+  li {
     color: #fff;
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
   }
 }
