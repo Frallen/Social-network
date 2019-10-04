@@ -1,37 +1,11 @@
 import { connect } from "react-redux";
-import * as axios from "axios";
 import React from "react";
 import Header from "./header";
-import { UserData, UserPhoto } from "../../redux/authReducer";
+import { UserData, UserPhoto, GetAuthUserData } from "../../redux/authReducer";
 
 class Box extends React.Component {
   componentDidMount() {
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-        // http параметр
-        withCredentials: true
-      })
-      .then(response => {
-        // если ответ  resultCode: 0(сервак) то все окей
-        if (response.data.resultCode === 0) {
-          let { id, login, email } = response.data.data;
-          this.props.UserData(id, login, email);
-        }
-        /*
-    authAPI.auth().then( data => {
-          // если ответ  resultCode: 0(сервак) то все окей 
-       //   if(response.data.resultCode===0){
-        let {id, login,email}=data
-        this.props.UserData(id, login,email)
-
-*/
-      });
-
-    /*  axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(
-        response=>{
-          this.props.UserPhoto(response.data)
-    })
-*/
+    this.props.GetAuthUserData();
   }
 
   render() {
@@ -53,7 +27,7 @@ let mapStateToProps = state => {
 
 const HeaderContainer = connect(
   mapStateToProps,
-  { UserData, UserPhoto }
+  { UserData, UserPhoto, GetAuthUserData }
 )(Box);
 
 export default HeaderContainer;
