@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
 import { addpost, PostChange, Profile } from "../../redux/profileReducer";
 import React from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import User from "./user";
+import { WithAuthRedirect } from "../../hoc/WithAuthRedirect";
 class UserContainer extends React.Component {
   componentDidMount() {
     //userid определяется в app.js в пути route как параметр
@@ -19,7 +20,7 @@ class UserContainer extends React.Component {
   render() {
     //если не авторизован перекидывает в логин редиркетом из react-router-dom
     //если не isauth не true то редирект
-    if (!this.props.isAuth) return <Redirect to={"/login"}></Redirect>;
+
     return (
       <>
         <User {...this.props}></User>
@@ -28,16 +29,23 @@ class UserContainer extends React.Component {
   }
 }
 
+// Чтобы не дублировать код нужно использовать hight oreder component
+// передаем пропсы проверям на анутетификацию
+// отрисовываем            //Hoc(хок)
+let authRedirectComponent = WithAuthRedirect(UserContainer);
+
+
+
 let mapStateToProps = state => {
   return {
     user: state.Profile.user,
     P: state.Profile.P,
-    newPostText: state.Profile.newPostText,
-    isAuth: state.auth.isAuth
+    newPostText: state.Profile.newPostText
   };
 };
+
 //для сочетания url и api
-let WithUrl = withRouter(UserContainer);
+let WithUrl = withRouter(authRedirectComponent);
 //{ОБЯЗАТЕЛЬНО СКОБКИ}
 const ProfileContainer = connect(
   mapStateToProps,

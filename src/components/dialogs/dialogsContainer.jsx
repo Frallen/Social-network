@@ -5,8 +5,8 @@ import {
 } from "../../redux/dialogsReducer";
 import { connect } from "react-redux";
 import React from "react";
-
-class Box extends React.Component {
+import { WithAuthRedirect } from "../../hoc/WithAuthRedirect";
+class DialogClass extends React.Component {
   componentDidMount() {}
 
   render() {
@@ -18,13 +18,14 @@ let mapStateToProps = state => {
   return {
     NewMessageBody: state.Messages.NewMessageBody,
     messages: state.Messages.M,
-    isAuth: state.auth.isAuth
   };
 };
+
+let authRedirectComponent = WithAuthRedirect(DialogClass)
 
 const DialogsConatainer = connect(
   mapStateToProps,
   { SendMessageCreator, UpdateNewMessagebodyCreator }
-)(Box);
+)(authRedirectComponent);
 
 export default DialogsConatainer;

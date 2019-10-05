@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./dialogs.module.scss";
 import { NavLink } from "react-router-dom";
 import user from "./../../img/user.jpg";
-import {Redirect} from "react-router-dom"
 
 const Messageitem = props => {
 
@@ -38,7 +37,7 @@ const Dialogs = props => {
     props.SendMessageCreator();
   };
 
-  if(!props.isAuth) return <Redirect to={"/login"}></Redirect>
+
 
   let MessageElement = props.messages.map(m => (
     <Messageitem key={m.id} name={m.name} text={m.text}></Messageitem>
