@@ -3,28 +3,28 @@ import {
   UpdateNewMessagebodyCreator,
   SendMessageCreator
 } from "../../redux/dialogsReducer";
-import {connect} from "react-redux"
+import { connect } from "react-redux";
+import React from "react";
 
-let mapStateToProps=(state)=>{
-  return{ 
-    NewMessageBody:state.Messages.NewMessageBody,
-    messages:state.Messages.M
-  }
-}
-let mapDispatchToProps=(dispatch)=>{
-  return{ 
-     MessageChange:(body) => {
-      dispatch(UpdateNewMessagebodyCreator(body));
-    },
-  
-    SendMessageClick:() => {
-      dispatch(SendMessageCreator());
-    }
+class Box extends React.Component {
+  componentDidMount() {}
+
+  render() {
+    return <Dialogs {...this.props}></Dialogs>;
   }
 }
 
+let mapStateToProps = state => {
+  return {
+    NewMessageBody: state.Messages.NewMessageBody,
+    messages: state.Messages.M,
+    isAuth: state.auth.isAuth
+  };
+};
 
-const DialogsConatainer= connect(mapStateToProps, mapDispatchToProps)(Dialogs)
-
+const DialogsConatainer = connect(
+  mapStateToProps,
+  { SendMessageCreator, UpdateNewMessagebodyCreator }
+)(Box);
 
 export default DialogsConatainer;

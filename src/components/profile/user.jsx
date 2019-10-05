@@ -3,7 +3,6 @@ import Contentheader from "../../img/content-header.jpg";
 import classes from "./profile.module.scss";
 import user from "./../../img/user.jpg";
 import Preloader from "../common/preloader/preloader";
-
 const User = props => {
   //если нет профайла(!)
 

@@ -10,13 +10,14 @@ import NavigationContainer from "./components/Navigation/navigationContainer";
 import NewsContainer from "./components/news/newsContainer";
 import FindContainer from "./components/find/findConatainer";
 import HeaderContainer from "./components/header/headerContainer";
-
+import LoginContainer from "./components/Login/LoginContainer"
 const App = () => {
   return (
     <div className="Wrapper">
 <HeaderContainer></HeaderContainer>
       <NavigationContainer></NavigationContainer>
       <div className="content">
+        <Route path="/login" render={()=> <LoginContainer></LoginContainer>}></Route>
         <Route path="/profile/:userId?" render={() => <ProfileContainer></ProfileContainer>}></Route>
         <Route path="/dialogs"render={() => <DialogsConatainer></DialogsConatainer>}></Route>
         <Route path="/news" render={() => <NewsContainer></NewsContainer>}></Route>

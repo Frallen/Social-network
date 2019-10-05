@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { addpost, PostChange, Profile } from "../../redux/profileReducer";
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import User from "./user";
 class UserContainer extends React.Component {
   componentDidMount() {
@@ -17,10 +17,9 @@ class UserContainer extends React.Component {
   }
 
   render() {
-    //PostChange={this.props.PostChange}
-    //Можно сократить и передать все данные(они всеравно подготовленны спецально для нее)и не перечислять
-    // то что выше ///
-    // копирование все что в просах и отсылка
+    //если не авторизован перекидывает в логин редиркетом из react-router-dom
+    //если не isauth не true то редирект
+    if (!this.props.isAuth) return <Redirect to={"/login"}></Redirect>;
     return (
       <>
         <User {...this.props}></User>
@@ -33,7 +32,8 @@ let mapStateToProps = state => {
   return {
     user: state.Profile.user,
     P: state.Profile.P,
-    newPostText: state.Profile.newPostText
+    newPostText: state.Profile.newPostText,
+    isAuth: state.auth.isAuth
   };
 };
 //для сочетания url и api

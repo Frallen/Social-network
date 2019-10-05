@@ -2,8 +2,11 @@ import React from "react";
 import classes from "./dialogs.module.scss";
 import { NavLink } from "react-router-dom";
 import user from "./../../img/user.jpg";
+import {Redirect} from "react-router-dom"
 
 const Messageitem = props => {
+
+
   return (
     <NavLink
       to={"/dialogs/" + props.id}
@@ -28,12 +31,14 @@ const Messageitem = props => {
 const Dialogs = props => {
   let onMessageChange = e => {
     let body = e.target.value;
-    props.MessageChange(body);
+    props.UpdateNewMessagebodyCreator(body);
   };
 
   let onSendMessageClick = () => {
-    props.SendMessageClick();
+    props.SendMessageCreator();
   };
+
+  if(!props.isAuth) return <Redirect to={"/login"}></Redirect>
 
   let MessageElement = props.messages.map(m => (
     <Messageitem key={m.id} name={m.name} text={m.text}></Messageitem>
