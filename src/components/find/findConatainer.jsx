@@ -8,7 +8,7 @@ import {
 import React from "react";
 import Users from "./users";
 import Preloader from "../common/preloader/preloader";
-import { compose } from "../../../../../../Users/vlad.DESKTOP-M4R1RQC/AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux";
+import { compose } from "redux";
 
 class UsersContainer extends React.Component {
   /* constructor(props) {
