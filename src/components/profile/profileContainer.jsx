@@ -4,6 +4,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import User from "./user";
 import { WithAuthRedirect } from "../../hoc/WithAuthRedirect";
+import { compose } from "redux";
 class UserContainer extends React.Component {
   componentDidMount() {
     //userid определяется в app.js в пути route как параметр
@@ -32,9 +33,7 @@ class UserContainer extends React.Component {
 // Чтобы не дублировать код нужно использовать hight oreder component
 // передаем пропсы проверям на анутетификацию
 // отрисовываем            //Hoc(хок)
-let authRedirectComponent = WithAuthRedirect(UserContainer);
-
-
+//let authRedirectComponent = WithAuthRedirect(UserContainer);
 
 let mapStateToProps = state => {
   return {
@@ -44,12 +43,16 @@ let mapStateToProps = state => {
   };
 };
 
-//для сочетания url и api
-let WithUrl = withRouter(authRedirectComponent);
-//{ОБЯЗАТЕЛЬНО СКОБКИ}
-const ProfileContainer = connect(
-  mapStateToProps,
-  { addpost, PostChange, Profile }
-)(WithUrl);
 
-export default ProfileContainer;
+//let WithUrl = withRouter(authRedirectComponent);
+//{ОБЯЗАТЕЛЬНО СКОБКИ}
+
+export default compose(
+  connect(
+    mapStateToProps,
+    { addpost, PostChange, Profile }), /* ВСЯ иерархия начинается с низу userContainer перекидавается все выше начиная с WithAuthRedirect*/
+    //для сочетания url и api
+    withRouter,                         
+    //переадресация если не залогинен
+  WithAuthRedirect,
+)(UserContainer);

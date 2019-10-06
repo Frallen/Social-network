@@ -8,6 +8,7 @@ import {
 import React from "react";
 import Users from "./users";
 import Preloader from "../common/preloader/preloader";
+import { compose } from "../../../../../../Users/vlad.DESKTOP-M4R1RQC/AppData/Local/Microsoft/TypeScript/3.6/node_modules/redux";
 
 class UsersContainer extends React.Component {
   /* constructor(props) {
@@ -46,16 +47,15 @@ let mapStateToProps = state => {
   };
 };
 
-const FindContainer = connect(
-  mapStateToProps,
-  {
-    //Вместо передавания друг другу ссылкок,сразу делаем ссылку из редьюсера
-    // имя одинаковое
-    follow,
-    unfollow,
-    SetCurrentPage,
-    getUsers: GetUsers
-  }
-)(UsersContainer);
-
-export default FindContainer;
+export default compose(
+  connect(
+    mapStateToProps,
+    {//Вместо передавания друг другу ссылкок,сразу делаем ссылку из редьюсера
+      // имя одинаковое
+      follow,
+      unfollow,
+      SetCurrentPage,
+      getUsers: GetUsers
+    }
+  )(UsersContainer)
+);

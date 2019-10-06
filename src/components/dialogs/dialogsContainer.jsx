@@ -4,6 +4,7 @@ import {
   SendMessageCreator
 } from "../../redux/dialogsReducer";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import React from "react";
 import { WithAuthRedirect } from "../../hoc/WithAuthRedirect";
 class DialogClass extends React.Component {
@@ -17,15 +18,13 @@ class DialogClass extends React.Component {
 let mapStateToProps = state => {
   return {
     NewMessageBody: state.Messages.NewMessageBody,
-    messages: state.Messages.M,
+    messages: state.Messages.M
   };
 };
 
-let authRedirectComponent = WithAuthRedirect(DialogClass)
-
-const DialogsConatainer = connect(
-  mapStateToProps,
-  { SendMessageCreator, UpdateNewMessagebodyCreator }
-)(authRedirectComponent);
-
-export default DialogsConatainer;
+export default compose(
+  connect(
+    mapStateToProps,
+{ SendMessageCreator, UpdateNewMessagebodyCreator }),
+  WithAuthRedirect
+)(DialogClass);
