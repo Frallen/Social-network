@@ -1,8 +1,8 @@
 import React from "react";
-import Contentheader from "../../img/content-header.jpg";
 import classes from "./profile.module.scss";
 import user from "./../../img/user.jpg";
 import Preloader from "../common/preloader/preloader";
+import ProfileInfo from "./ProfileInfo/Profileinfo";
 const User = props => {
   //если нет профайла(!)
 
@@ -25,9 +25,6 @@ const User = props => {
 
   return (
     <div>
-      <div className={classes.header}>
-        <img src={Contentheader} alt="" />
-      </div>
       <div>
         <div className={classes.bio}>
           <div className={classes.avatarbox}>
@@ -38,11 +35,7 @@ const User = props => {
           </div>
           <div className={classes.biotext}>
             <h2>{Profile.fullName}</h2>
-            <ul>
-              <li>Date of Birth:&nbsp;b.dob</li>
-              <li>{Profile.aboutMe}</li>
-              <li>Website&nbsp;{Profile.contacts.website}</li>
-            </ul>
+          <ProfileInfo Profile={props.user}></ProfileInfo>
           </div>
         </div>
       </div>

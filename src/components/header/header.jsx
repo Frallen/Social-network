@@ -15,7 +15,7 @@ const Header = props => {
         <h1 className={classes.logotext}>Scramble</h1>
       </div>
       <ul className={classes.login}>
-        <li>
+        <li className={classes.loginelement}>
           {//если автаризован(true) то из пропсов достать логин,если нет
           //  то показать ссылку на авторизацию
           props.isAuth ? props.login : <NavLink to={"/login"}>Login</NavLink>}

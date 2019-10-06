@@ -62,12 +62,10 @@
 .name {
   font-size: 1vw;
 }
-ul {
-  padding: 0;
-  margin: 0;
-}
-li {
-  list-style-type: none;
+.status{
+  max-width: 150px;
+  overflow: hidden;
+  
 }
 
 .loadbutton {

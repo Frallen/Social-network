@@ -48,10 +48,10 @@ const Users =(props)=>{
                       <li>{u.Age}</li>
                       <li>{u.Gender}</li>
                       <li>{u.City}</li>
+                      <li className={classes.status}>{u.status}</li>
                     </ul>
                   </div>
-                  {u.followed ? <button disabled={props.followInProgress.some(id=>id===u.id)} className={classes.unfollow} onClick={() => { 
-                    
+  {u.followed ? <button disabled={props.followInProgress.some(id=>id===u.id)} className={classes.unfollow} onClick={() => {
                  props.follow(u.id)
  }} >Unfollow</button> :<button disabled={props.followInProgress.some(id=>id===u.id)} className={classes.follow} onClick={() => { 
                 props.unfollow(u.id)
