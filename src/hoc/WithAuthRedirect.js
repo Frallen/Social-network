@@ -7,11 +7,13 @@ let mapStateForRedirect = state => {
     isAuth: state.auth.isAuth
   };
 };
-
-export const WithAuthRedirect = Component => {
+                              //С БОЛЬШОЙ БУКВЫ (КОМПОНЕНТЫ С БОЛЬШОЙ)
+export const WithAuthRedirect = Component => {//влоажена в findContainer в compose()
   class RedirectComponent extends React.Component {
     render() {
+      //ЕСЛИ false то редирект
       if (!this.props.isAuth) return <Redirect to={"/login"}></Redirect>;
+      //если не folse то в компоненту передаются пропсы
       return <Component {...this.props}></Component>;
     }
   }

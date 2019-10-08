@@ -3,6 +3,7 @@ import { profileAPI } from "../api/API";
 const AddPost = "ADD-POST";
 const UpdatenewpostText = "UpdateNewPostText";
 const SetUserProfile = "SetUserProfile";
+const SetStatus = "SetStatus";
 let initialstate = {
   /*Данные в профиле о пользователе */
   /*
@@ -15,7 +16,8 @@ Bio:[
     { id: 2, message: "My firt post", like: 10 }
   ],
   newPostText: "Added from bll",
-  user: null
+  user: null,
+  status: ""
 };
 
 const profileReducer = (state = initialstate, action) => {
@@ -37,6 +39,12 @@ const profileReducer = (state = initialstate, action) => {
         ...state,
         user: action.user
       };
+    case SetStatus: {
+      return {
+        ...state,
+        status: action.status
+      };
+    }
     default:
       return state;
   }
@@ -46,6 +54,9 @@ export default profileReducer;
 export const addpost = () => ({ type: AddPost });
 export const PostChange = text => ({ type: UpdatenewpostText, text });
 export const Userprofile = user => ({ type: SetUserProfile, user });
+export const MyStatus = status => ({ type: SetStatus, status });
+
+//Санки,саночки,апишеки
 
 export const Profile = userId => {
   return dispatch => {
@@ -54,3 +65,21 @@ export const Profile = userId => {
     });
   };
 };
+
+export const ProfileStatus = userId => {
+  return dispatch => {
+    profileAPI.getStatus(userId).then(data => {
+      dispatch(MyStatus(data));
+    });
+  };
+};
+
+export const ProfileUpdateStatus=status=>{
+  return dispatch=>{
+    profileAPI.updateStatus(status).then(data=>{
+      if(data.data.resultCode===0){
+      dispatch(MyStatus(data))
+      }
+    })
+  }
+}

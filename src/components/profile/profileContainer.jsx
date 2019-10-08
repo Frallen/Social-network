@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { addpost, PostChange, Profile } from "../../redux/profileReducer";
+import { addpost, PostChange, Profile,ProfileStatus,ProfileUpdateStatus } from "../../redux/profileReducer";
 import React from "react";
 import { withRouter } from "react-router-dom";
 import User from "./user";
@@ -16,6 +16,7 @@ class UserContainer extends React.Component {
     }
 
     this.props.Profile(userId);
+    this.props.ProfileStatus(userId);
   }
 
   render() {
@@ -24,7 +25,7 @@ class UserContainer extends React.Component {
 
     return (
       <>
-        <User {...this.props}></User>
+        <User {...this.props} status={this.props.status} UpdateStatus={this.props.ProfileUpdateStatus}></User>
       </>
     );
   }
@@ -39,7 +40,8 @@ let mapStateToProps = state => {
   return {
     user: state.Profile.user,
     P: state.Profile.P,
-    newPostText: state.Profile.newPostText
+    newPostText: state.Profile.newPostText,
+    status:state.Profile.status,
   };
 };
 
@@ -50,9 +52,9 @@ let mapStateToProps = state => {
 export default compose(
   connect(
     mapStateToProps,
-    { addpost, PostChange, Profile }), /* ВСЯ иерархия начинается с низу userContainer перекидавается все выше начиная с WithAuthRedirect*/
+    { addpost, PostChange, Profile,ProfileStatus,ProfileUpdateStatus }), /* ВСЯ иерархия начинается с низу userContainer перекидавается все выше начиная с WithAuthRedirect*/
     //для сочетания url и api
     withRouter,                         
-    //переадресация если не залогинен
+    //переадресация если не залогинен (хок)
   WithAuthRedirect,
 )(UserContainer);

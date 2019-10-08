@@ -30,7 +30,13 @@ export const authAPI = {
 };
 
 export const profileAPI = {
-  myProfile(userId) {
+  myProfile(userId) {                             //в response суем data
     return instance.get(`profile/${userId}`).then(response => response.data);
+  },
+  getStatus(userId){
+    return instance.get(`profile/status/${userId}`).then(response=>response.data)
+  },
+  updateStatus(status){                  //статус это серверная пременная в нее кладем наш статус
+    return instance.put(`profile/status`, {status:status})
   }
 };

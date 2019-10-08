@@ -35,7 +35,7 @@ const User = props => {
           </div>
           <div className={classes.biotext}>
             <h2>{Profile.fullName}</h2>
-          <ProfileInfo Profile={props.user}></ProfileInfo>
+          <ProfileInfo Profile={props.user} status={props.status} UpdateStatus={props.UpdateStatus}></ProfileInfo>
           </div>
         </div>
       </div>
