@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import Login from "./login";
 import React from "react";
+import Login from "./login";
 
 class Box extends React.Component {
   componentDidMount() {}

@@ -6,7 +6,7 @@ import newsReducer from "./NewsReducer";
 import SearchReducer from "./searchReducer";
 import authReducer from "./authReducer";
 import thunk from "redux-thunk"
-
+import {reducer as formReducer} from "redux-form"
 let reducers=combineReducers({
     Messages:dialogReducer,
     Profile:profileReducer,
@@ -14,6 +14,7 @@ let reducers=combineReducers({
     News:newsReducer,
     Search:SearchReducer,
     auth:authReducer,
+    form:formReducer,
 })
 
 
