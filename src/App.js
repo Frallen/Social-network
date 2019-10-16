@@ -1,30 +1,23 @@
 import React from "react";
-import { Route } from "react-router-dom";
 import "./App.scss";
-import Friends from "./components/friends/friends";
-import Music from "./components/music/music";
-import ProfileContainer from "./components/profile/profileContainer";
-import Settings from "./components/settings/settings";
-import DialogsConatainer from "./components/dialogs/dialogsContainer";
+import { Route } from "react-router-dom";
 import NavigationContainer from "./components/Navigation/navigationContainer";
-import NewsContainer from "./components/news/newsContainer";
-import FindContainer from "./components/find/findConatainer";
-import HeaderContainer from "./components/header/headerContainer";
-import LoginContainer from "./components/Login/LoginContainer"
+import HomePage from "./components/Homepage/home";
+import LoginContainer from "./components/auth/loginContainer"
+import SignupContainer from "./components/auth/signupContainer";
+import ProjectsContainer from "./components/Projects/ProjectsContainer";
+import CreateContainer from "./components/Projects/create/createContainer";
 const App = () => {
+ //<HomePage></HomePage> 
   return (
-    <div className="Wrapper">
-<HeaderContainer></HeaderContainer>
+    <div className="main">
       <NavigationContainer></NavigationContainer>
-      <div className="content">
-        <Route path="/login" render={()=> <LoginContainer></LoginContainer>}></Route>
-        <Route path="/profile/:userId?" render={() => <ProfileContainer></ProfileContainer>}></Route>
-        <Route path="/dialogs"render={() => <DialogsConatainer></DialogsConatainer>}></Route>
-        <Route path="/news" render={() => <NewsContainer></NewsContainer>}></Route>
-        <Route path="/music" render={() => <Music></Music>}></Route>
-        <Route path="/Settings" render={() => <Settings></Settings>}></Route>
-        <Route path="/friends" render={() => <Friends></Friends>}></Route>
-        <Route path="/find" render={() => <FindContainer></FindContainer>}></Route>
+      <HomePage></HomePage> 
+     <div className="container">
+      <Route path={"/login"} render={ ()=><LoginContainer></LoginContainer>}></Route>
+      <Route path={"/signup"} render={ ()=><SignupContainer></SignupContainer>}></Route>
+      <Route path={"/projects"} render={()=><ProjectsContainer></ProjectsContainer>}></Route>
+      <Route path={"/create"} render={()=><CreateContainer></CreateContainer>}></Route>
       </div>
     </div>
   );

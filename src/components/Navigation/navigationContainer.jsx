@@ -1,11 +1,19 @@
-import { connect } from "react-redux";
+import React from "react"
+import { connect } from "react-redux"
 import Navigation from "./navigation"
 
-let mapStateToProps=(state)=>{
-    return{
-        friends:state.Navigation.Navigation
+class navigationBox extends React.Component{
+
+    render(){
+        return <Navigation></Navigation>
+        
     }
 }
-const NavigationContainer=connect(mapStateToProps)(Navigation)
+
+let mapStateToProps=(state)=>{
+
+}
+
+const NavigationContainer=connect(mapStateToProps)(navigationBox)
 
 export default NavigationContainer

@@ -1,39 +1,100 @@
 import React from "react";
 import classes from "./navigation.module.scss";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { Link } from "react-scroll";
+class Navigation extends React.Component {
+  state = {
+    isActive: false
+  };
 
-const Friendsonline = (props)=>{
-/* Вложенная компонента в которую передается список друзей онлайн (максимум 3) */
-    
+  Setactive = () => {
+    this.setState({
+      isActive: true
+    });
+  };
+ 
 
-    return(
-        <div className={classes.item}>
-        <div className={classes.imgbox}><img src="" alt=""/></div>
-        <h3>{props.name}</h3>
-    </div>
-    )
-}
+/* 
+          <ul className={classes.mainMenu}>
+           <li>
+             <NavLink>Создать проект</NavLink>
+           </li>
+           <li>
+             <NavLink>Проекты</NavLink>
+           </li>
+           <li>
+             <NavLink></NavLink>
+           </li>
+           <li>
+             <NavLink to="/">Выйти</NavLink>
+           </li>
+         </ul> */
 
-const Navigation = (props) => {
-
-    let friedns=props.friends.map(f=><Friendsonline key={f.id} name={f.name}></Friendsonline>)
-    return(
-        <div className={classes.navigation}>
-        <ul>
-            <li className={classes.listitem}><NavLink to="/profile" activeClassName={classes.active} className={classes.button}><i className="far fa-user"></i><span>Profile</span></NavLink></li>
-            <li className={classes.listitem}><NavLink to="/dialogs" activeClassName={classes.active} className={classes.button}><i className="far fa-envelope"></i><span>Messages</span></NavLink></li>
-            <li className={classes.listitem}><NavLink to="/music" activeClassName={classes.active} className={classes.button}><i className="fas fa-play"></i><span>Music</span></NavLink></li>
-            <li className={classes.listitem}><NavLink to="/friends" activeClassName={classes.active} className={classes.button}><i className="fas fa-user-friends"></i><span>Friends</span></NavLink></li>
-            <li className={classes.listitem}><NavLink to="/find" activeClassName={classes.active} className={classes.button}><i className="fas fa-search"></i><span>Search</span></NavLink></li>
-            <li className={classes.listitem}><NavLink to="/news" activeClassName={classes.active} className={classes.button}><i className="far fa-newspaper"></i><span>News</span></NavLink></li>
-            <li className={classes.listitem}><NavLink to="/settings" activeClassName={classes.active} className={classes.button}><i className="fas fa-cog"></i><span>Settings</span></NavLink></li>
-        </ul> 
-        <div className={classes.friendsonline}>
-           {friedns}
+/*   <div className={classes.mobile} onClick={this.Setactive}>
+            <span
+              className={this.state.isActive ? style : classes.stick}
+            ></span>
+          </div> */
+  render() {
+    const style = classes.stick + "" + classes.stickActive;
+    return (
+      <div className={classes.Navigatigon}>
+        <div className={classes.container}>
+          <h1 className={classes.logo}>NoSpace</h1>
+          <ul className={classes.menuLanding}>
+            <li className={classes.item}>
+              <Link
+                activeClass="active"
+                to="home"
+                spy={true}
+                smooth={true}
+                offset={-70}
+                duration={500}
+              >
+                Главная
+              </Link>
+            </li>
+            <li className={classes.item}>
+              <Link
+                activeClass="active"
+                to="advantages"
+                spy={true}
+                smooth={true}
+                offset={0}
+                duration={500}
+              >
+                Возможности
+              </Link>
+            </li>
+            <li className={classes.item}>
+              <Link
+                activeClass="active"
+                to="tehnologes"
+                spy={true}
+                smooth={true}
+                offset={0}
+                duration={500}
+              >
+               Технологии
+              </Link>
+            </li>
+            <li className={classes.item}>
+              <NavLink to="/signup" className={classes.login}>
+                Регистрация
+              </NavLink>
+            </li>
+            <li className={classes.item}>
+              <NavLink to="/login" className={classes.login}>
+                Вход
+              </NavLink>
+            </li>
+          </ul>
+         
+      
         </div>
       </div>
-
-    )
+      
+    );
+  }
 }
-
 export default Navigation;
