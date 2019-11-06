@@ -1,18 +1,25 @@
-import { combineReducers,createStore } from "redux"
-import NavigationReducer from "./navigationReducer"
-import usersReducer from "./usersReducer"
-import authReducer from "./authReducer"
-import projectReducer from "./projectReducer"
+import { combineReducers, createStore, applyMiddleware } from "redux";
+import dialogReducer from "./dialogsReducer";
+import navigationReducer from "./navigationReducer";
+import profileReducer from "./profileReducer";
+import newsReducer from "./NewsReducer";
+import SearchReducer from "./searchReducer";
+import authReducer from "./authReducer";
+import thunk from "redux-thunk"
 import {reducer as formReducer} from "redux-form"
-
 let reducers=combineReducers({
-    Navigation:NavigationReducer,
-    Users:usersReducer,
-    Auth:authReducer,
+    Messages:dialogReducer,
+    Profile:profileReducer,
+    Navigation:navigationReducer,
+    News:newsReducer,
+    Search:SearchReducer,
+    auth:authReducer,
     form:formReducer,
-    project:projectReducer,
 })
 
-let store=createStore(reducers)
+
+let store =createStore(reducers,applyMiddleware(thunk))
+
+
 
 export default store

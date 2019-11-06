@@ -1,31 +1,41 @@
-@import "normalize.css";
-h1,h2,h3,h4,h5{
+@import "./normalaze.scss";
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #fff;
+}
+
+h1,h2,h3,h4{
   padding: 0;
   margin: 0;
 }
 
-body{
-  font-family: 'PT Sans', sans-serif;
+.Wrapper {
+  display: grid;
+  grid-template-areas: "a a a""b c c""b c c""b c c";
+  grid-template-columns: minmax(min-content,10vw) 10fr;
+  grid-template-rows: 50px 1fr;
 
+ /* margin: 0 auto;
+  max-width: 1440px;*/
+}
+
+.content{
+  grid-area: c;
+  background: #edf2f6;
+  padding-bottom: 50px;
+
+}
+p{
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
 }
 
 ul{
   padding: 0;
   margin: 0;
-}
 
+}
 li{
   list-style-type: none;
 }
-
-p{
-  padding: 0;
-  margin: 0;
-}
-
-.container{
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 10px;
-}
-

@@ -1,16 +1,18 @@
-
-let initialState={
-
+let initialstate={
+    Navigation:[ 
+        {id:1, name:"Andrey",},
+        {id:2, name:"Georg",},
+        {id:3, name:"Deren",}
+    ]
 }
 
-const NavigationReducer=(state=initialState,action)=>{
-    switch (action.type) {
-      /*  case value:
-            
-            break;
-    */
-        default:return state
-    }
+
+
+const navigationReducer=(state=initialstate,action)=>{
+
+    let stateCopy={...state}
+
+    return stateCopy
 }
 
-export default NavigationReducer
+export default navigationReducer
