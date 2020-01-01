@@ -7,15 +7,30 @@ const SignUpBox = props => {
     <form onSubmit={props.handleSubmit}>
       <div>
         <label htmlFor="FIO">ФИО</label>
-        <Field className={classes.input} component="input" type="text" name={"FIO"}/>
+        <Field
+          className={classes.input}
+          component="input"
+          type="text"
+          name="FIO"
+        />
       </div>
       <div>
         <label htmlFor="email">Емейл</label>
-        <Field className={classes.input} component="input" type="email" name={"Email"}/>
+        <Field
+          className={classes.input}
+          component="input"
+          type="email"
+          name="Email"
+        />
       </div>
       <div>
         <label htmlFor="password">Пароль</label>
-        <Field className={classes.input} component="input" type="password" name={"password"}/>
+        <Field
+          className={classes.input}
+          component="input"
+          type="password"
+          name="password"
+        />
       </div>
       <div>
         <button className={classes.submited}>Завершить</button>
@@ -28,10 +43,10 @@ const SignUpForm = reduxForm({
   form: "signUp"
 })(SignUpBox);
 
-const SignUp = (formData) => {
-  let onSubmit=(formData)=>{
-    console.log(formData)
-  }
+const SignUp = formData => {
+  let onSubmit = formData => {
+    console.log(formData);
+  };
   return (
     <div className={classes.formbox}>
       <div className={classes.form}>

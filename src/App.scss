@@ -1,41 +1,39 @@
 @import "./normalaze.scss";
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   background: #fff;
 }
 
-h1,h2,h3,h4{
+h1,
+h2,
+h3,
+h4 {
   padding: 0;
   margin: 0;
 }
 
 .Wrapper {
   display: grid;
-  grid-template-areas: "a a a""b c c""b c c""b c c";
-  grid-template-columns: minmax(min-content,10vw) 10fr;
+  grid-template-areas: "a a a" "b c c" "b c c" "b c c";
+  grid-template-columns: minmax(min-content, 10vw) 10fr;
   grid-template-rows: 50px 1fr;
-
- /* margin: 0 auto;
-  max-width: 1440px;*/
 }
 
-.content{
+.main {
   grid-area: c;
   background: #edf2f6;
   padding-bottom: 50px;
-
 }
-p{
+p {
   font-size: 1rem;
   padding: 0;
   margin: 0;
 }
 
-ul{
+ul {
   padding: 0;
   margin: 0;
-
 }
-li{
+li {
   list-style-type: none;
 }

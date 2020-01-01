@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, withRouter, Switch, Redirect } from "react-router-dom";
 import "./App.scss";
 import Friends from "./components/friends/friends";
 import Music from "./components/music/music";
@@ -10,24 +10,74 @@ import NavigationContainer from "./components/Navigation/navigationContainer";
 import NewsContainer from "./components/news/newsContainer";
 import FindContainer from "./components/find/findConatainer";
 import HeaderContainer from "./components/header/headerContainer";
-import LoginContainer from "./components/Login/LoginContainer"
-const App = () => {
-  return (
-    <div className="Wrapper">
-<HeaderContainer></HeaderContainer>
-      <NavigationContainer></NavigationContainer>
-      <div className="content">
-        <Route path="/login" render={()=> <LoginContainer></LoginContainer>}></Route>
-        <Route path="/profile/:userId?" render={() => <ProfileContainer></ProfileContainer>}></Route>
-        <Route path="/dialogs"render={() => <DialogsConatainer></DialogsConatainer>}></Route>
-        <Route path="/news" render={() => <NewsContainer></NewsContainer>}></Route>
+import LoginContainer from "./components/auth/loginContainer";
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { GetAuthUserData } from "./redux/authReducer";
+import LogOut from "./components/auth/LogOut";
+const App = props => {
+  let content;
+  if (props.isAuth) {
+    content = (
+      <Switch>
+        <Route
+          path="/profile/:userId?"
+          render={() => <ProfileContainer></ProfileContainer>}
+        ></Route>
+        <Route
+          path="/dialogs"
+          render={() => <DialogsConatainer></DialogsConatainer>}
+        ></Route>
+        <Route
+          path="/news"
+          render={() => <NewsContainer></NewsContainer>}
+        ></Route>
         <Route path="/music" render={() => <Music></Music>}></Route>
         <Route path="/Settings" render={() => <Settings></Settings>}></Route>
         <Route path="/friends" render={() => <Friends></Friends>}></Route>
-        <Route path="/find" render={() => <FindContainer></FindContainer>}></Route>
-      </div>
+        <Route
+          path="/find"
+          render={() => <FindContainer></FindContainer>}
+        ></Route>
+        <Route path="/logout" render={() => <LogOut></LogOut>}></Route>
+        <Redirect to="/"></Redirect>
+      </Switch>
+    );
+  } else {
+    content = (
+      <Switch>
+        <Route
+          path="/news"
+          render={() => <NewsContainer></NewsContainer>}
+        ></Route>
+        <Route
+          path="/login"
+          render={() => <LoginContainer></LoginContainer>}
+        ></Route>
+         <Route
+          path="/find"
+          render={() => <FindContainer></FindContainer>}
+        ></Route>
+        <Redirect to="/"></Redirect>
+      </Switch>
+    );
+  }
+  return (
+    <div className="Wrapper">
+      <HeaderContainer></HeaderContainer>
+      <NavigationContainer></NavigationContainer>
+      <div className="main">{content}</div>
     </div>
   );
 };
 
-export default App;
+let mapStateToProps = state => {
+  return {
+    isAuth: state.auth.isAuth
+  };
+};
+
+export default compose(
+  connect(mapStateToProps, { GetAuthUserData }),
+  withRouter
+)(App);

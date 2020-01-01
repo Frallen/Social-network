@@ -1,36 +1,33 @@
-.formbox{
+.logincontainer {
+  max-width: 350px;
+  margin: 0 auto;
+  margin-top: 20px;
+  height: max-content;
+  .boxlogin {
+    padding: 20px;
+    background: #ff8066;
     display: flex;
     justify-content: center;
-    margin: 50px 0;
-    .form{
-        border:2px solid #cecece;
-        padding: 20px 15px;
-        .formtitle{
-            color: #5a5252;
-            font-size: 1.5em;
-        }
-        label{
-            display: block;
-            color: #5a5252;
-            padding: 8px 0px;
-        }
-        .input{
-            width: 100%;
-            box-sizing: border-box;
-            padding: 10px 8px;
-            outline: none;
-        }
-        .submited{
-            border: none;
-            outline: none;
-            margin-top: 1.1em;
-            padding: 0.8em 5em;
-            color: #fff;
-            background: #4b4950;
-            transition: 0.2s ease-in-out;
-        }
-        .submited:hover{
-            transition: 0.2s ease-in-out;
-        }
+    flex-direction: column;
+    .text {
+      color: #fff6ff;
     }
+    .login {
+      margin-top: 10px;
+      border: none;
+      outline: none;
+      width: auto;
+      padding: 10px 15px;
+      background: #fff;
+      color: #ff8066;
+      cursor: pointer;
+    }
+    .login:active {
+      background: #fff6ff;
+    }
+    .flexspace {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }

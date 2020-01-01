@@ -26,17 +26,27 @@ export const usersAPI = {
 export const authAPI = {
   me() {
     return instance.get(`auth/me/`);
+  },
+  login(email, password, rememberMe = false) {
+    return instance.post(`auth/login`, { email, password, rememberMe });
+  },
+  logout() {
+    return instance.delete(`auth/login`);
   }
 };
 
 export const profileAPI = {
-  myProfile(userId) {                             //в response суем data
+  myProfile(userId) {
+    //в response суем data
     return instance.get(`profile/${userId}`).then(response => response.data);
   },
-  getStatus(userId){
-    return instance.get(`profile/status/${userId}`).then(response=>response.data)
+  getStatus(userId) {
+    return instance
+      .get(`profile/status/${userId}`)
+      .then(response => response.data);
   },
-  updateStatus(status){                  //статус это серверная пременная в нее кладем наш статус
-    return instance.put(`profile/status`, {status:status})
+  updateStatus(status) {
+    //статус это серверная пременная в нее кладем наш статус
+    return instance.put(`profile/status`, { status: status });
   }
 };
