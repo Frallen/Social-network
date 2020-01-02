@@ -1,8 +1,11 @@
 import { authAPI } from "../api/API";
+import { stopSubmit } from "redux-form";
 
+const iniitalizeSuccsess = "iniitalizeSuccsess";
 const SetUserData = "SetUserdata";
 const userPhoto = "userPhoto";
 let initialState = {
+  initialize: false,
   userId: null,
   email: null,
   login: null,
@@ -16,9 +19,13 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         // придут данные из data и перезатерут state
-        ...action.data,
+        ...action.data
       };
-
+    case iniitalizeSuccsess:
+      return {
+        ...state,
+        initialize: true
+      };
     case userPhoto:
       return {
         ...state,
@@ -28,14 +35,24 @@ const authReducer = (state = initialState, action) => {
       return state;
   }
 };
+export default authReducer;
+
+//инициализация приложения
+export const iniitalizeApp = (userId, email, login, isAuth) => dispatch => {
+  //взятие данных
+  let promise = dispatch(GetAuthUserData());
+  //подгрузка всех данных,на странице показывается прелоадер
+  //после подгрузки всех данных показываются даннные
+  Promise.all([promise]).then(() => {
+    dispatch({type: iniitalizeSuccsess});
+  });
+};
 
 export const UserData = (userId, email, login, isAuth) => ({
   type: SetUserData,
   data: { userId, email, login, isAuth }
 });
 export const UserPhoto = photo => ({ type: userPhoto, photo });
-
-export default authReducer;
 
 export const GetAuthUserData = () => dispatch => {
   authAPI.me().then(response => {
@@ -47,11 +64,19 @@ export const GetAuthUserData = () => dispatch => {
   });
 };
 
-export const login = ({email, password, rememberMe}) => dispatch => {
+export const login = ({ email, password, rememberMe }) => dispatch => {
   authAPI.login(email, password, rememberMe).then(response => {
     // если ответ  resultCode: 0(сервак) то все окей
     if (response.data.resultCode === 0) {
       dispatch(GetAuthUserData());
+    } else {
+      //stopSubmit остановка отпраки от reduxForm
+      //Указываю название формы в которой нужно остановить отправку
+      let message =
+        response.data.messages.length > 0
+          ? response.data.messages[0]
+          : "Some error";
+      dispatch(stopSubmit("login", { _error: message }));
     }
   });
 };

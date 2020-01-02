@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, withRouter, Switch, Redirect } from "react-router-dom";
 import "./App.scss";
 import Friends from "./components/friends/friends";
@@ -15,7 +15,18 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { GetAuthUserData } from "./redux/authReducer";
 import LogOut from "./components/auth/LogOut";
+import {iniitalizeApp} from "./redux/authReducer"
+import Preloader from "./components/common/preloader/preloader";
 const App = props => {
+
+  useEffect(()=>{
+    props.iniitalizeApp()
+  })
+
+if(!props.initialize){
+  return<Preloader></Preloader>
+}
+
   let content;
   if (props.isAuth) {
     content = (
@@ -73,11 +84,12 @@ const App = props => {
 
 let mapStateToProps = state => {
   return {
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    initialize: state.auth.initialize,
   };
 };
 
 export default compose(
-  connect(mapStateToProps, { GetAuthUserData }),
+  connect(mapStateToProps, { GetAuthUserData,iniitalizeApp }),
   withRouter
 )(App);

@@ -31,6 +31,7 @@ const FormBox = props => {
         <label htmlFor="rememberMe">Запомнить меня</label>
         <Field component={AuthCheckbox} name="rememberMe"></Field>
       </div>
+      {props.error && <div className={classes.summaryError}>{props.error}</div>}
       <div>
         <button className={classes.login}>Войти</button>
       </div>

@@ -9,14 +9,13 @@ class UserContainer extends React.Component {
   componentDidMount() {
     //userid определяется в app.js в пути route как параметр
     // достаем из просов id присваиваем для перехода по пользователям
-    let userId = this.props.match.params.userId;
+   // let userId = this.props.match.params.userId;
     //если нет userid то загружаем второго пользователя(Димыча)
-    if (!userId) {
+  /*  if (!userId) {
       userId = 2;
-    }
-
-    this.props.Profile(userId);
-    this.props.ProfileStatus(userId);
+    }*/
+    this.props.Profile(this.props.userid);
+    this.props.ProfileStatus(this.props.userid);
   }
 
   render() {
@@ -42,6 +41,7 @@ let mapStateToProps = state => {
     P: state.Profile.P,
     newPostText: state.Profile.newPostText,
     status:state.Profile.status,
+    userid:state.auth.userId,
   };
 };
 
