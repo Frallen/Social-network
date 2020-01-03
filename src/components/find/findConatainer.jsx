@@ -9,20 +9,17 @@ import React from "react";
 import Users from "./users";
 import Preloader from "../common/preloader/preloader";
 import { compose } from "redux";
+import { getUsers, pageSize, totalUsersCount, currentPage, isFetching, followInProgress } from "../../redux/selectors/usersSelector";
 
 class UsersContainer extends React.Component {
-  /* constructor(props) {
-      super(props);
-    }
-  */
-
+ 
   componentDidMount() {
     // теперь вся логика в редьюсере
-    this.props.getUsers(this.props.currentPage, this.props.pageSize);
+    this.props.GetUsers(this.props.currentPage, this.props.pageSize);
   }
 
   onPageChanged = pageNumer => {
-    this.props.getUsers(pageNumer);
+    this.props.GetUsers(pageNumer);
   };
 
   render() {
@@ -38,12 +35,12 @@ class UsersContainer extends React.Component {
 
 let mapStateToProps = state => {
   return {
-    Search: state.Search.users,
-    pageSize: state.Search.pageSize,
-    totalUsersCount: state.Search.totalUsersCount,
-    currentPage: state.Search.currentPage,
-    /*Это пропс bool*/ isfetching: state.Search.isfetching,
-    followInProgress: state.Search.followInProgress
+    Search: getUsers(state),
+    pageSize: pageSize(state),
+    totalUsersCount: totalUsersCount(state),
+    currentPage: currentPage(state),
+    /*Это пропс bool*/ isfetching: isFetching(state),
+    followInProgress: followInProgress(state)
   };
 };
 
@@ -55,7 +52,7 @@ export default compose(
       follow,
       unfollow,
       SetCurrentPage,
-      getUsers: GetUsers
+      GetUsers
     }
   )(UsersContainer)
 );

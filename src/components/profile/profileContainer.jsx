@@ -22,11 +22,7 @@ class UserContainer extends React.Component {
     //если не авторизован перекидывает в логин редиркетом из react-router-dom
     //если не isauth не true то редирект
 
-    return (
-      <>
-        <User {...this.props} status={this.props.status} UpdateStatus={this.props.ProfileUpdateStatus}></User>
-      </>
-    );
+    return <User {...this.props} status={this.props.status} UpdateStatus={this.props.ProfileUpdateStatus}></User>
   }
 }
 
