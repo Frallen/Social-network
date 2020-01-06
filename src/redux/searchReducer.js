@@ -1,4 +1,5 @@
 import { usersAPI } from "../api/API";
+import { updateObjectinArray } from "./helpers";
 
 const Follow = "follow";
 const Unfollow = "unfollow";
@@ -21,24 +22,20 @@ const SearchReducer = (state = initialstate, action) => {
     case Follow:
       return {
         ...state,
-        /*варианты с изменением массива */
-        /*      https://prnt.sc/p5emse          */
-        /// ... три точки спред оператор (копирование массива)
-        users: state.users.map(u => {
-          if (u.id === action.userId) {
-            return { ...u, followed: true };
-          }
-          return u;
+        /*варианты с изменением массива 
+              https://prnt.sc/p5emse          
+        ... три точки спред оператор (копирование массива)
+      передача параметров в функцию в которой выполнятся поиск на соотвестивие и возращается коппия
+        */
+        users: updateObjectinArray(state.users, action.userId, "id", {
+          followed: true
         })
       };
     case Unfollow:
       return {
         ...state,
-        users: state.users.map(u => {
-          if (u.id === action.userId) {
-            return { ...u, followed: false };
-          }
-          return u;
+        users: updateObjectinArray(state.users, action.userId, "id", {
+          followed: false
         })
       };
     case Setusers:
@@ -105,24 +102,34 @@ export const GetUsers = (currentPage, pageSize) => async dispatch => {
   dispatch(SetTotalUsersCount(data.totalCount));
 };
 
-export const follow = userId => async dispatch => {
+/* Рефакторинг
+при повторяющихся функциях можно сделать одну и передавать в нее параметры
+apiMethod это сама айпи с со своим действием,нужен bind
+actionCreator это сам ответ с сервака успешен фолловин или нет
+нужно создать функцию и передавать в нее нужные параметры заранее определив их в дублирующихся функциях
+*/
+const FollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
   dispatch(togglefollowInProgress(true, userId));
-  let response = await usersAPI.unfollowUsers(userId);
+
+  let response = await apiMethod(userId);
+
   if (response.data.resultCode === 0) {
-    dispatch(unfollowSucces(userId));
+    dispatch(actionCreator(userId));
   }
+
   dispatch(togglefollowInProgress(false, userId));
 };
 
-export const unfollow = userId => async (dispatch) => {
-  dispatch(togglefollowInProgress(true, userId));
-  //из юзерапи вызваю фолловюзер закидываю из пропсов айди, отписка тоже самое
-  let response = await usersAPI.followUsers(userId);
-  if (response.data.resultCode === 0) {
-    dispatch(followSucces(userId));
-  }
+export const follow = userId => async dispatch => {
+  let apiMethod = usersAPI.followUsers.bind(userId);
+  let actionCreator = followSucces;
+  FollowFlow(dispatch, userId, apiMethod, actionCreator);
+};
 
-  dispatch(togglefollowInProgress(false, userId));
+export const unfollow = userId => async dispatch => {
+  let apiMethod = usersAPI.unfollowUsers.bind(userId);
+  let actionCreator = unfollowSucces;
+  FollowFlow(dispatch, userId, apiMethod, actionCreator);
 };
 
 export default SearchReducer;
