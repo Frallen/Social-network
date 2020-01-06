@@ -58,28 +58,20 @@ export const MyStatus = status => ({ type: SetStatus, status });
 
 //Санки,саночки,апишеки
 
-export const Profile = userId => {
-  return dispatch => {
-    profileAPI.myProfile(userId).then(data => {
-      dispatch(Userprofile(data));
-    });
-  };
+export const Profile = userId => async dispatch => {
+  let res = await profileAPI.myProfile(userId);
+
+  dispatch(Userprofile(res));
 };
 
-export const ProfileStatus = userId => {
-  return dispatch => {
-    profileAPI.getStatus(userId).then(data => {
-      dispatch(MyStatus(data));
-    });
-  };
+export const ProfileStatus = userId => async dispatch => {
+  let res = await profileAPI.getStatus(userId);
+  dispatch(MyStatus(res));
 };
 
-export const ProfileUpdateStatus=status=>{
-  return dispatch=>{
-    profileAPI.updateStatus(status).then(data=>{
-      if(data.data.resultCode===0){
-      dispatch(MyStatus(data))
-      }
-    })
+export const ProfileUpdateStatus = status => async dispatch => {
+  let res = await profileAPI.updateStatus(status);
+  if (res.data.resultCode === 0) {
+    dispatch(MyStatus(res));
   }
-}
+};

@@ -44,7 +44,7 @@ export const iniitalizeApp = (userId, email, login, isAuth) => dispatch => {
   //подгрузка всех данных,на странице показывается прелоадер
   //после подгрузки всех данных показываются даннные
   Promise.all([promise]).then(() => {
-    dispatch({type: iniitalizeSuccsess});
+    dispatch({ type: iniitalizeSuccsess });
   });
 };
 
@@ -54,38 +54,35 @@ export const UserData = (userId, email, login, isAuth) => ({
 });
 export const UserPhoto = photo => ({ type: userPhoto, photo });
 
-export const GetAuthUserData = () => dispatch => {
-  authAPI.me().then(response => {
-    // если ответ  resultCode: 0(сервак) то все окей
-    if (response.data.resultCode === 0) {
-      let { id, login, email } = response.data.data;
-      dispatch(UserData(id, email, login, true));
-    }
-  });
+export const GetAuthUserData = () => async dispatch => {
+  let response = await authAPI.me();
+  // если ответ  resultCode: 0(сервак) то все окей
+  if (response.data.resultCode === 0) {
+    let { id, login, email } = response.data.data;
+    dispatch(UserData(id, email, login, true));
+  }
 };
 
-export const login = ({ email, password, rememberMe }) => dispatch => {
-  authAPI.login(email, password, rememberMe).then(response => {
-    // если ответ  resultCode: 0(сервак) то все окей
-    if (response.data.resultCode === 0) {
-      dispatch(GetAuthUserData());
-    } else {
-      //stopSubmit остановка отпраки от reduxForm
-      //Указываю название формы в которой нужно остановить отправку
-      let message =
-        response.data.messages.length > 0
-          ? response.data.messages[0]
-          : "Some error";
-      dispatch(stopSubmit("login", { _error: message }));
-    }
-  });
+export const login = ({ email, password, rememberMe }) => async dispatch => {
+  let response = await authAPI.login(email, password, rememberMe);
+  // если ответ  resultCode: 0(сервак) то все окей
+  if (response.data.resultCode === 0) {
+    dispatch(GetAuthUserData());
+  } else {
+    //stopSubmit остановка отпраки от reduxForm
+    //Указываю название формы в которой нужно остановить отправку
+    let message =
+      response.data.messages.length > 0
+        ? response.data.messages[0]
+        : "Some error";
+    dispatch(stopSubmit("login", { _error: message }));
+  }
 };
 
-export const logoutMe = (email, password, rememberMe) => dispatch => {
-  authAPI.logout().then(response => {
-    // если ответ  resultCode: 0(сервак) то все окей
-    if (response.data.resultCode === 0) {
-      dispatch(UserData(null, null, null, false));
-    }
-  });
+export const logoutMe = (email, password, rememberMe) => async dispatch => {
+  let response = await authAPI.logout();
+  // если ответ  resultCode: 0(сервак) то все окей
+  if (response.data.resultCode === 0) {
+    dispatch(UserData(null, null, null, false));
+  }
 };
